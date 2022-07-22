@@ -44,6 +44,17 @@ const HeaderMenu: React.FC<Props> = ({
       >
         Vai alla partita
       </Menu.Item>
+      {giocatoriInizializzati && (
+        <Menu.Item
+          as="a"
+          active={statoPartita === StatoPartitaEnum.PARTITA_CONCLUSA}
+          onClick={() =>
+            dispatch(cambiaView(StatoPartitaEnum.PARTITA_CONCLUSA))
+          }
+        >
+          Risultati
+        </Menu.Item>
+      )}
       <Menu.Item
         as="a"
         active={statoPartita === StatoPartitaEnum.PUNTEGGI_PARTITE_PRECEDENTI}
@@ -53,7 +64,14 @@ const HeaderMenu: React.FC<Props> = ({
       >
         Punteggi precedenti
       </Menu.Item>
-      <Menu.Item position="right">Sviluppato da Alberto!</Menu.Item>
+      <Menu.Item
+        link
+        href="https://www.t.me/PRAV01"
+        target="_blank"
+        position="right"
+      >
+        Sviluppato da Alberto!
+      </Menu.Item>
     </Menu>
   );
 };

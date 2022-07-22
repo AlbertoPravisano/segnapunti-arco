@@ -24,7 +24,7 @@ const InputGiocatori = () => {
         );
       })}
       <AggiungiNuovoGiocatore />
-      <Button.Group>
+      <Button.Group floated="right">
         <Button onClick={() => dispatch(rimuoviUltimoGiocatore())}>
           Hai commesso un errore? Rimuovi l'ultimo giocatore
         </Button>
