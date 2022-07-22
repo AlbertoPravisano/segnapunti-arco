@@ -30,6 +30,7 @@ const InputGiocatori = () => {
         </Button>
         <Button.Or />
         <Button
+          primary
           onClick={() =>
             dispatch(cambiaView(StatoPartitaEnum.PARTITA_IN_CORSO))
           }

@@ -1,8 +1,17 @@
 import { StatoPartitaEnum } from "./statoPartita";
 
+export const NUMERO_TIRI = 12;
+
+export interface Tiro {
+  id: number;
+  tracciato: string;
+  tentativo: number;
+  punteggio: number;
+}
+
 export interface Giocatore {
   nome: string;
-  punteggio: number;
+  tiri: Tiro[];
 }
 
 export type StatoPartita = keyof typeof StatoPartitaEnum;
@@ -30,4 +39,14 @@ export const getRisultatiGiocatore = (
   return cronologiaGioco.filter(
     (risultatiGiocatore) => risultatiGiocatore.giocatore === nomeGiocatore
   )[0];
+};
+
+export const getTiriTracciato = (giocatore: Giocatore, tracciato: string) => {
+  return giocatore.tiri.filter((tiro) => tiro.tracciato === tracciato);
+};
+
+export const calcolaRisultatoFinaleGiocatore = (giocatore: Giocatore) => {
+  let totale = 0;
+  giocatore.tiri.forEach((tiro) => (totale += tiro.punteggio));
+  return totale;
 };

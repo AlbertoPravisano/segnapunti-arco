@@ -1,12 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Tab } from "semantic-ui-react";
 
 import TabellaTiriGiocatore from "../components/TabellaTiriGiocatore";
-import { Init } from "../redux/reducer";
+import { cambiaView, Init } from "../redux/reducer";
+import { NUMERO_TIRI } from "../tools/interfaces";
+import { StatoPartitaEnum } from "../tools/statoPartita";
 
 const Partita = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    let totaleTiri = 0;
+    const N_TRACCIATI = 2;
+    giocatori.forEach((giocatore) => (totaleTiri += giocatore.tiri.length));
+    if (totaleTiri === NUMERO_TIRI * giocatori.length * N_TRACCIATI) {
+      dispatch(cambiaView(StatoPartitaEnum.PARTITA_CONCLUSA));
+    }
+  }, [dispatch, giocatori]);
 
   return (
     <Tab
@@ -16,9 +28,9 @@ const Partita = () => {
           <React.Fragment>
             <br />
             TRACCIATO A
-            <TabellaTiriGiocatore giocatore={giocatore} />
+            <TabellaTiriGiocatore giocatore={giocatore} tracciato="A" />
             TRACCIATO B
-            <TabellaTiriGiocatore giocatore={giocatore} />
+            <TabellaTiriGiocatore giocatore={giocatore} tracciato="B" />
           </React.Fragment>
         ),
       }))}

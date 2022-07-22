@@ -8,6 +8,7 @@ import { Init } from "./redux/reducer";
 import Home from "./views/Home";
 import HeaderMenu from "./components/HeaderMenu";
 import Partita from "./views/Partita";
+import RisultatiPartita from "./views/RisultatiPartita";
 import InputGiocatori from "./views/InputGiocatori";
 import LeaderBoard from "./views/LeaderBoard";
 
@@ -26,10 +27,13 @@ const App = () => {
             [StatoPartitaEnum.HOME]: <Home />,
             [StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI]: <InputGiocatori />,
             [StatoPartitaEnum.PARTITA_IN_CORSO]: <Partita />,
+            [StatoPartitaEnum.PARTITA_CONCLUSA]: <RisultatiPartita />,
             [StatoPartitaEnum.PUNTEGGI_PARTITE_PRECEDENTI]: <LeaderBoard />,
           }[statoPartita]
         }
       </Container>
+      <br />
+      <br />
     </React.Fragment>
   );
 };

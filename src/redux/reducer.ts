@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Giocatore, StatoPartita } from "../tools/interfaces";
+import { Giocatore, StatoPartita, Tiro } from "../tools/interfaces";
 import { StatoPartitaEnum } from "../tools/statoPartita";
 
 export interface Init {
@@ -23,19 +23,33 @@ export const cassaSlice = createSlice({
     aggiungiGiocatore: (state, action: PayloadAction<string>) => {
       state.giocatori.push({
         nome: action.payload,
-        punteggio: 0,
+        tiri: [],
       });
     },
     rimuoviUltimoGiocatore: (state) => {
       state.giocatori.pop();
     },
-    aggiungiPunteggioGiocatore: (
+    aggiungiTiroGiocatore: (
       state,
-      action: PayloadAction<{ nome: string; punteggio: number }>
+      action: PayloadAction<{ nome: string; tiro: Tiro }>
     ) => {
-      const { nome, punteggio } = action.payload;
+      const { nome, tiro } = action.payload;
       const indexGiocatore = state.giocatori.findIndex((g) => g.nome === nome);
-      state.giocatori[indexGiocatore].punteggio += punteggio;
+      const indexTiroModificato = state.giocatori[
+        indexGiocatore
+      ].tiri.findIndex(
+        (tiroGiocatore) =>
+          tiroGiocatore.id === tiro.id &&
+          tiroGiocatore.tracciato === tiro.tracciato
+      );
+      if (indexTiroModificato > -1) {
+        state.giocatori[indexGiocatore].tiri[indexTiroModificato].punteggio =
+          tiro.punteggio;
+        state.giocatori[indexGiocatore].tiri[indexTiroModificato].tentativo =
+          tiro.tentativo;
+      } else {
+        state.giocatori[indexGiocatore].tiri.push(tiro);
+      }
     },
   },
 });
@@ -45,7 +59,7 @@ export const {
   aggiungiGiocatore,
   rimuoviUltimoGiocatore,
   cambiaView,
-  aggiungiPunteggioGiocatore,
+  aggiungiTiroGiocatore,
 } = cassaSlice.actions;
 
 export default cassaSlice.reducer;
