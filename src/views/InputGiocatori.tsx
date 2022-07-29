@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Form } from "semantic-ui-react";
+import { Button, Input, Form, Message } from "semantic-ui-react";
 import {
   aggiungiGiocatore,
   cambiaView,
@@ -11,7 +11,16 @@ import { StatoPartitaEnum } from "../tools/statoPartita";
 
 const InputGiocatori = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);
+  const [inErrore, setInErrore] = React.useState(false);
   const dispatch = useDispatch();
+
+  const onIniziaPartita = () => {
+    if (giocatori.length > 0) {
+      dispatch(cambiaView(StatoPartitaEnum.PARTITA_IN_CORSO));
+    } else {
+      setInErrore(true);
+    }
+  };
 
   return (
     <React.Fragment>
@@ -28,16 +37,21 @@ const InputGiocatori = () => {
         <Button onClick={() => dispatch(rimuoviUltimoGiocatore())}>
           Hai commesso un errore? Rimuovi l'ultimo giocatore
         </Button>
-        <Button.Or />
-        <Button
-          primary
-          onClick={() =>
-            dispatch(cambiaView(StatoPartitaEnum.PARTITA_IN_CORSO))
-          }
-        >
+        <Button.Or text="o" />
+        <Button primary onClick={onIniziaPartita}>
           Inizia partita
         </Button>
       </Button.Group>
+      <br />
+      <br />
+      {inErrore && (
+        <Message
+          negative
+          icon="ban"
+          content="Non puoi iniziare la partita senza aver inserito almeno un giocatore!"
+          onDismiss={() => setInErrore(false)}
+        />
+      )}
     </React.Fragment>
   );
 };

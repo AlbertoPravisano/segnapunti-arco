@@ -29,6 +29,10 @@ export const cassaSlice = createSlice({
     rimuoviUltimoGiocatore: (state) => {
       state.giocatori.pop();
     },
+    resettaStatoPartita: (state) => {
+      state.giocatori = [];
+      state.statoPartita = StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI;
+    },
     aggiungiTiroGiocatore: (
       state,
       action: PayloadAction<{ nome: string; tiro: Tiro }>
@@ -58,6 +62,7 @@ export const cassaSlice = createSlice({
 export const {
   aggiungiGiocatore,
   rimuoviUltimoGiocatore,
+  resettaStatoPartita,
   cambiaView,
   aggiungiTiroGiocatore,
 } = cassaSlice.actions;

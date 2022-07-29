@@ -19,7 +19,7 @@ const calcolaPunteggioTotale = (partite: Partita[]) => {
 
 const TabellaPunteggi: React.FC<Props> = ({ risultatiGiocatore }) => {
   return (
-    <Table celled>
+    <Table celled unstackable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">

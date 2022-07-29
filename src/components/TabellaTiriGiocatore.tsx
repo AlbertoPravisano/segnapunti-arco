@@ -24,7 +24,7 @@ const TabellaTiriGiocatore: React.FC<Props> = ({ giocatore, tracciato }) => {
   const tiriTracciato = getTiriTracciato(giocatore, tracciato);
   const dispatch = useDispatch();
   return (
-    <Table celled compact definition>
+    <Table celled compact definition unstackable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell></Table.HeaderCell>

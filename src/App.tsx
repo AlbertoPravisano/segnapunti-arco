@@ -6,21 +6,21 @@ import { StatoPartitaEnum } from "./tools/statoPartita";
 import { Init } from "./redux/reducer";
 
 import Home from "./views/Home";
-import HeaderMenu from "./components/HeaderMenu";
+// import HeaderMenu from "./components/HeaderMenu";
 import Partita from "./views/Partita";
 import RisultatiPartita from "./views/RisultatiPartita";
 import InputGiocatori from "./views/InputGiocatori";
 import LeaderBoard from "./views/LeaderBoard";
+import HeaderMenuMobile from "./components/HeaderMenuMobile";
 
 const App = () => {
   const { statoPartita, giocatori } = useSelector((state: Init) => state);
 
   return (
-    <React.Fragment>
-      <HeaderMenu
-        statoPartita={statoPartita}
-        giocatoriInizializzati={giocatori.length > 0}
-      />
+    <HeaderMenuMobile
+      statoPartita={statoPartita}
+      giocatoriInizializzati={giocatori.length > 0}
+    >
       <Container>
         {
           {
@@ -34,7 +34,7 @@ const App = () => {
       </Container>
       <br />
       <br />
-    </React.Fragment>
+    </HeaderMenuMobile>
   );
 };
 

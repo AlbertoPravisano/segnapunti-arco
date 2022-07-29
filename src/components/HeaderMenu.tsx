@@ -1,13 +1,14 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
+import { Menu } from "semantic-ui-react";
 
-import { StatoPartitaEnum } from "../tools/statoPartita";
-import { cambiaView } from "../redux/reducer";
 import logo from "../images/target-512.png";
+import { cambiaView } from "../redux/reducer";
+import { StatoPartita } from "../tools/interfaces";
+import { StatoPartitaEnum } from "../tools/statoPartita";
 
 interface Props {
-  statoPartita: keyof typeof StatoPartitaEnum;
+  statoPartita: StatoPartita;
   giocatoriInizializzati: boolean;
 }
 

@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
-import { Init } from "../redux/reducer";
+import { Init, resettaStatoPartita } from "../redux/reducer";
 import { calcolaRisultatoFinaleGiocatore } from "../tools/interfaces";
 
 const RisultatiPartita = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);
+  const dispatch = useDispatch();
+
   return (
     <React.Fragment>
       <Grid>
@@ -21,9 +23,19 @@ const RisultatiPartita = () => {
         })}
       </Grid>
       <br />
-      <Button primary floated="right">
-        Salva i risultati
-      </Button>
+      <Button.Group>
+        <Button
+          negative
+          floated="right"
+          onClick={() => dispatch(resettaStatoPartita())}
+        >
+          Inizia una nuova partita
+        </Button>
+        <Button.Or text="o" />
+        <Button primary floated="right">
+          Salva i risultati
+        </Button>
+      </Button.Group>
     </React.Fragment>
   );
 };
