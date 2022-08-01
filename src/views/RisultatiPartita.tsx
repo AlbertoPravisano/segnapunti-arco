@@ -5,16 +5,20 @@ import { Button, Grid, Icon, Message } from "semantic-ui-react";
 import NavButton from "../components/NavButton";
 import { Init, resettaStatoPartita } from "../redux/reducer";
 import { formatDateDDMMYYYY } from "../tools/dateUtils";
-import { calcolaRisultatoFinaleGiocatore } from "../tools/giocatore";
 import { getCronologiaGiocatori } from "../tools/partita";
+import { getPunteggioTracciato, Tiro } from "../tools/tiro";
+
+const getPartitaAttualeGiocatore = (tiri: Tiro[]) => {
+  return {
+    punteggio: getPunteggioTracciato(tiri),
+    data: formatDateDDMMYYYY(new Date()),
+  };
+};
 
 const RisultatiPartita = () => {
-  const date = new Date();
   const giocatori = useSelector((state: Init) => state.giocatori);
   const dispatch = useDispatch();
-  const [isRisultatiSalvati, setIsRisultatiSalvati] = React.useState<
-    boolean | undefined
-  >(undefined);
+  const [isRisultatiSalvati, setIsRisultatiSalvati] = React.useState(false);
 
   const onHandleSaveResults = () => {
     const cronologiePartitePrecedenti = getCronologiaGiocatori();
@@ -23,19 +27,13 @@ const RisultatiPartita = () => {
     if (cronologiePartitePrecedenti.length === 0) {
       cronologiaAggiornata = giocatori.map((giocatore) => ({
         giocatore: giocatore.nome,
-        partite: [
-          {
-            punteggio: calcolaRisultatoFinaleGiocatore(giocatore),
-            data: formatDateDDMMYYYY(date),
-          },
-        ],
+        partite: [getPartitaAttualeGiocatore(giocatore.tiri)],
       }));
     } else {
       giocatori.forEach((giocatorePartitaAttuale) => {
-        const partitaGiocatore = {
-          punteggio: calcolaRisultatoFinaleGiocatore(giocatorePartitaAttuale),
-          data: formatDateDDMMYYYY(date),
-        };
+        const partitaGiocatore = getPartitaAttualeGiocatore(
+          giocatorePartitaAttuale.tiri
+        );
         const indiceGiocatoreInCronologia = cronologiaAggiornata.findIndex(
           (giocatore) => giocatore.giocatore === giocatorePartitaAttuale.nome
         );
@@ -63,9 +61,7 @@ const RisultatiPartita = () => {
           return (
             <Grid.Row key={index}>
               <Grid.Column>{giocatore.nome}</Grid.Column>
-              <Grid.Column>
-                {calcolaRisultatoFinaleGiocatore(giocatore)}
-              </Grid.Column>
+              <Grid.Column>{getPunteggioTracciato(giocatore.tiri)}</Grid.Column>
             </Grid.Row>
           );
         })}
@@ -74,7 +70,7 @@ const RisultatiPartita = () => {
       <Button.Group>
         <NavButton icon labelPosition="left" view="PARTITA_IN_CORSO">
           Torna alla partita in corso <Icon name="reply" />
-        </NavButton>{" "}
+        </NavButton>
         <Button.Or text="o" />
         <Button
           negative

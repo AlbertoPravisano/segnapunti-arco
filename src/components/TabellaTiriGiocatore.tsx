@@ -1,20 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Table } from "semantic-ui-react";
+
 import { aggiungiTiroGiocatore } from "../redux/reducer";
-import { NUMERO_TIRI, Tiro } from "../tools/tiro";
+import { NUMERO_TIRI, Tiro, getPunteggioTracciato } from "../tools/tiro";
 import { getTiriTracciato, Giocatore } from "../tools/giocatore";
 
 interface Props {
   giocatore: Giocatore;
   tracciato: string;
 }
-
-const getPunteggioTracciato = (tiri: Tiro[]) => {
-  let punteggio = 0;
-  tiri.forEach((tiro) => (punteggio += tiro.punteggio));
-  return punteggio;
-};
 
 const TabellaTiriGiocatore: React.FC<Props> = ({ giocatore, tracciato }) => {
   const tiriTracciato = getTiriTracciato(giocatore, tracciato);

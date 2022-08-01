@@ -6,8 +6,6 @@ export enum StatoPartitaEnum {
   PUNTEGGI_PARTITE_PRECEDENTI = "PUNTEGGI_PARTITE_PRECEDENTI",
 }
 
-export type StatoPartita = keyof typeof StatoPartitaEnum;
-
 export interface PartitaInCorsoGiocatore {
   giocatore: string;
   punteggio: number;
@@ -24,6 +22,7 @@ export interface RisultatiGiocatore {
   partite: Partita[];
 }
 
+export type StatoPartita = keyof typeof StatoPartitaEnum;
 export type CronologiaGiocatori = RisultatiGiocatore[];
 
 export const getRisultatiGiocatore = (
