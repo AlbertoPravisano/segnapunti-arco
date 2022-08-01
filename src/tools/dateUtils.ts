@@ -1,3 +1,8 @@
+/**
+ *
+ * @param date
+ * @returns Data in formato DD/MM/YYYY
+ */
 export const formatDateDDMMYYYY = (date: Date) => {
   let month = (date.getMonth() + 1).toString();
   let day = date.getDate().toString();
@@ -8,5 +13,5 @@ export const formatDateDDMMYYYY = (date: Date) => {
   if (day.length < 2) {
     day = "0" + day;
   }
-  return [day, month, year].join("-");
+  return [day, month, year].join("/");
 };

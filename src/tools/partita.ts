@@ -32,3 +32,8 @@ export const getRisultatiGiocatore = (
     (risultatiGiocatore) => risultatiGiocatore.giocatore === nomeGiocatore
   )[0];
 };
+
+export const getCronologiaGiocatori: () => CronologiaGiocatori = () => {
+  const cronologia = localStorage.getItem("cronologia");
+  return cronologia ? JSON.parse(cronologia) : [];
+};
