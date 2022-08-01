@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Message, Button } from "semantic-ui-react";
+import NavButton from "../components/NavButton";
 
 import TabellaPunteggi from "../components/TabellaPunteggi";
 import {
@@ -17,34 +18,41 @@ const LeaderBoard = () => {
   return (
     <React.Fragment>
       {nessunGiocatorePrecedente ? (
-        <Message info content="La cronologia delle partite è vuota" />
+        <React.Fragment>
+          <Message info content="La cronologia delle partite è vuota" />
+          <NavButton primary view="INIZIALIZZAZIONE_GIOCATORI">
+            Inizia una partita
+          </NavButton>
+        </React.Fragment>
       ) : (
-        <Tab
-          panes={cronologiaGiocatori.map((giocatore, index) => {
-            return {
-              menuItem: giocatore.giocatore,
-              key: index,
-              render: () => (
-                <TabellaPunteggi
-                  risultatiGiocatore={getRisultatiGiocatore(
-                    giocatore.giocatore,
-                    cronologiaGiocatori
-                  )}
-                />
-              ),
-            };
-          })}
-        />
+        <React.Fragment>
+          <Tab
+            panes={cronologiaGiocatori.map((giocatore, index) => {
+              return {
+                menuItem: giocatore.giocatore,
+                key: index,
+                render: () => (
+                  <TabellaPunteggi
+                    risultatiGiocatore={getRisultatiGiocatore(
+                      giocatore.giocatore,
+                      cronologiaGiocatori
+                    )}
+                  />
+                ),
+              };
+            })}
+          />
+          <Button
+            negative
+            onClick={() => {
+              localStorage.clear();
+              setCronologiaGiocatori([]);
+            }}
+          >
+            Elimina l'intera leaderboard
+          </Button>
+        </React.Fragment>
       )}
-      <Button
-        negative
-        onClick={() => {
-          localStorage.clear();
-          setCronologiaGiocatori([]);
-        }}
-      >
-        Elimina l'intera leaderboard
-      </Button>
     </React.Fragment>
   );
 };

@@ -14,12 +14,14 @@ export interface PartitaInCorsoGiocatore {
   data: string;
 }
 
+interface Partita {
+  punteggio: number;
+  data: string;
+}
+
 export interface RisultatiGiocatore {
   giocatore: string;
-  partite: {
-    punteggio: number;
-    data: string;
-  }[];
+  partite: Partita[];
 }
 
 export type CronologiaGiocatori = RisultatiGiocatore[];
@@ -31,6 +33,12 @@ export const getRisultatiGiocatore = (
   return cronologiaGioco.filter(
     (risultatiGiocatore) => risultatiGiocatore.giocatore === nomeGiocatore
   )[0];
+};
+
+export const calcolaPunteggioTotale = (partite: Partita[]) => {
+  let totale = 0;
+  partite.forEach((partita) => (totale += partita.punteggio));
+  return totale;
 };
 
 export const getCronologiaGiocatori: () => CronologiaGiocatori = () => {

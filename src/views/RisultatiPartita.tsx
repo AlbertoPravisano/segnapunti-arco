@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid } from "semantic-ui-react";
+import { Button, Grid, Message } from "semantic-ui-react";
 
+import NavButton from "../components/NavButton";
 import { Init, resettaStatoPartita } from "../redux/reducer";
 import { formatDateDDMMYYYY } from "../tools/dateUtils";
 import { calcolaRisultatoFinaleGiocatore } from "../tools/giocatore";
@@ -11,6 +12,9 @@ const RisultatiPartita = () => {
   const date = new Date();
   const giocatori = useSelector((state: Init) => state.giocatori);
   const dispatch = useDispatch();
+  const [isRisultatiSalvati, setIsRisultatiSalvati] = React.useState<
+    boolean | undefined
+  >(undefined);
 
   const onHandleSaveResults = () => {
     const cronologiePartitePrecedenti = getCronologiaGiocatori();
@@ -49,6 +53,7 @@ const RisultatiPartita = () => {
     }
 
     localStorage.setItem("cronologia", JSON.stringify(cronologiaAggiornata));
+    setIsRisultatiSalvati(true);
   };
 
   return (
@@ -79,6 +84,22 @@ const RisultatiPartita = () => {
           Salva i risultati
         </Button>
       </Button.Group>
+      {isRisultatiSalvati && (
+        <Message info>
+          <Grid>
+            <Grid.Column width="8">
+              <Message.Header>
+                Hai salvato i risultati della partita!
+              </Message.Header>
+            </Grid.Column>
+            <Grid.Column width="8">
+              <NavButton floated="right" view="PUNTEGGI_PARTITE_PRECEDENTI">
+                Vai alla leaderboard
+              </NavButton>
+            </Grid.Column>
+          </Grid>
+        </Message>
+      )}
     </React.Fragment>
   );
 };

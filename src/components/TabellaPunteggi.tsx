@@ -1,21 +1,10 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import { RisultatiGiocatore } from "../tools/partita";
+import { calcolaPunteggioTotale, RisultatiGiocatore } from "../tools/partita";
 
 interface Props {
   risultatiGiocatore: RisultatiGiocatore;
 }
-
-interface Partita {
-  punteggio: number;
-  data: string;
-}
-
-const calcolaPunteggioTotale = (partite: Partita[]) => {
-  let totale = 0;
-  partite.forEach((partita) => (totale += partita.punteggio));
-  return totale;
-};
 
 const TabellaPunteggi: React.FC<Props> = ({ risultatiGiocatore }) => {
   return (
