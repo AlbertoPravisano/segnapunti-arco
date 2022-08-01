@@ -77,7 +77,9 @@ const GiocatoriPartitaInCorso: React.FC<Props> = ({
       {giocatori.length > 0 ? (
         <Grid.Row>
           <Grid.Column width="6">Nome giocatore</Grid.Column>
-          <Grid.Column width="4">Punteggio totale</Grid.Column>
+          <Grid.Column width="4">
+            Punteggio totale partite precedenti
+          </Grid.Column>
         </Grid.Row>
       ) : (
         <Grid.Row />

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid, Message } from "semantic-ui-react";
+import { Button, Grid, Icon, Message } from "semantic-ui-react";
 
 import NavButton from "../components/NavButton";
 import { Init, resettaStatoPartita } from "../redux/reducer";
@@ -72,6 +72,10 @@ const RisultatiPartita = () => {
       </Grid>
       <br />
       <Button.Group>
+        <NavButton icon labelPosition="left" view="PARTITA_IN_CORSO">
+          Torna alla partita in corso <Icon name="reply" />
+        </NavButton>{" "}
+        <Button.Or text="o" />
         <Button
           negative
           floated="right"
