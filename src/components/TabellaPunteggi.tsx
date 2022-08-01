@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import { RisultatiGiocatore } from "../tools/interfaces";
+import { RisultatiGiocatore } from "../tools/partita";
 
 interface Props {
   risultatiGiocatore: RisultatiGiocatore;

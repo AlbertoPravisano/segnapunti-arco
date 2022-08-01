@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
-import { StatoPartitaEnum } from "./tools/statoPartita";
+import { StatoPartitaEnum } from "./tools/partita";
 import { Init } from "./redux/reducer";
 
 import Home from "./views/Home";

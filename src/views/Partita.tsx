@@ -4,8 +4,8 @@ import { Tab } from "semantic-ui-react";
 
 import TabellaTiriGiocatore from "../components/TabellaTiriGiocatore";
 import { cambiaView, Init } from "../redux/reducer";
-import { NUMERO_TIRI } from "../tools/interfaces";
-import { StatoPartitaEnum } from "../tools/statoPartita";
+import { NUMERO_TIRI } from "../tools/tiro";
+import { StatoPartitaEnum } from "../tools/partita";
 
 const Partita = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);

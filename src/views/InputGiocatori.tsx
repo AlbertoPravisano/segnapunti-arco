@@ -7,7 +7,7 @@ import {
   Init,
   rimuoviUltimoGiocatore,
 } from "../redux/reducer";
-import { StatoPartitaEnum } from "../tools/statoPartita";
+import { StatoPartitaEnum } from "../tools/partita";
 
 const InputGiocatori = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);

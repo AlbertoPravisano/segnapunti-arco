@@ -2,7 +2,7 @@ import React from "react";
 import { Tab } from "semantic-ui-react";
 
 import TabellaPunteggi from "../components/TabellaPunteggi";
-import { getRisultatiGiocatore } from "../tools/interfaces";
+import { getRisultatiGiocatore } from "../tools/partita";
 
 const giocatore1 = {
   giocatore: "pippo",

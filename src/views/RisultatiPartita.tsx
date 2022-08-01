@@ -1,8 +1,9 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid } from "semantic-ui-react";
+
 import { Init, resettaStatoPartita } from "../redux/reducer";
-import { calcolaRisultatoFinaleGiocatore } from "../tools/interfaces";
+import { calcolaRisultatoFinaleGiocatore } from "../tools/giocatore";
 
 const RisultatiPartita = () => {
   const giocatori = useSelector((state: Init) => state.giocatori);

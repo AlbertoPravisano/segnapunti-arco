@@ -2,12 +2,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Table } from "semantic-ui-react";
 import { aggiungiTiroGiocatore } from "../redux/reducer";
-import {
-  getTiriTracciato,
-  Giocatore,
-  NUMERO_TIRI,
-  Tiro,
-} from "../tools/interfaces";
+import { NUMERO_TIRI, Tiro } from "../tools/tiro";
+import { getTiriTracciato, Giocatore } from "../tools/giocatore";
 
 interface Props {
   giocatore: Giocatore;

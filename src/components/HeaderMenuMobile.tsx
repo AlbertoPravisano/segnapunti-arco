@@ -4,8 +4,7 @@ import { Container, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import logo from "../images/target-512.png";
 import { cambiaView } from "../redux/reducer";
-import { StatoPartita } from "../tools/interfaces";
-import { StatoPartitaEnum } from "../tools/statoPartita";
+import { StatoPartita, StatoPartitaEnum } from "../tools/partita";
 
 interface Props {
   statoPartita: StatoPartita;

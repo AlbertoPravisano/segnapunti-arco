@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Giocatore, StatoPartita, Tiro } from "../tools/interfaces";
-import { StatoPartitaEnum } from "../tools/statoPartita";
+import { Giocatore } from "../tools/giocatore";
+import { StatoPartitaEnum, StatoPartita } from "../tools/partita";
+import { Tiro } from "../tools/tiro";
 
 export interface Init {
   statoPartita: StatoPartita;
