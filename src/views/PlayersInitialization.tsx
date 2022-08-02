@@ -38,7 +38,11 @@ const PlayersInitialization = () => {
         playersHistory={getHistoryFromStorage()}
       />
       <AddNewPlayer />
+      <br />
+      <br />
+      <br />
       <Button.Group
+        vertical
         title={
           noPlayersInMatch
             ? t("player_initialization.error_no_players_inserted")
@@ -53,7 +57,6 @@ const PlayersInitialization = () => {
         >
           {t("player_initialization.revert_last_insertion")}
         </Button>
-        <Button.Or text="o" />
         <Button primary disabled={noPlayersInMatch} onClick={onStartNewMatch}>
           {t("common.start_match")}
         </Button>

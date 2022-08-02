@@ -57,43 +57,53 @@ const MatchResults = () => {
         <Icon name="numbered list" />
         <Header.Content>{t("results.header")}</Header.Content>
       </Header>
+      <br />
       <Grid>
         {players.map((player, index) => {
           return (
             <Grid.Row key={index}>
-              <Grid.Column>{player.name}</Grid.Column>
-              <Grid.Column>{getScoreFromShots(player.shots)}</Grid.Column>
+              <Grid.Column width="3">{player.name}</Grid.Column>
+              <Grid.Column width="3">
+                {getScoreFromShots(player.shots)}
+              </Grid.Column>
             </Grid.Row>
           );
         })}
       </Grid>
       <br />
-      <Button.Group>
+      <Button.Group vertical floated="right">
         <NavButton icon labelPosition="left" view={ViewsEnum.MATCH_STARTED}>
           {t("results.return_to_match")} <Icon name="reply" />
         </NavButton>
-        <Button.Or text="o" />
         <Button negative floated="right" onClick={() => dispatch(cleanMatch())}>
           {t("results.start_new_game")}
         </Button>
-        <Button.Or text="o" />
         <Button primary floated="right" onClick={onHandleSaveResults}>
           {t("results.save_results")}
         </Button>
       </Button.Group>
       {isResultsSaved && (
-        <Message info>
-          <Grid>
-            <Grid.Column width="8">
-              <Message.Header>{t("results.results_saved")}</Message.Header>
-            </Grid.Column>
-            <Grid.Column width="8">
-              <NavButton floated="right" view={ViewsEnum.LEADERBOARD}>
-                {t("results.go_to_leaderboard")}
-              </NavButton>
-            </Grid.Column>
-          </Grid>
-        </Message>
+        <React.Fragment>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Message info>
+            <Grid stackable>
+              <Grid.Column width="8">
+                <Message.Header>{t("results.results_saved")}</Message.Header>
+              </Grid.Column>
+              <Grid.Column width="8">
+                <NavButton floated="right" view={ViewsEnum.LEADERBOARD}>
+                  {t("results.go_to_leaderboard")}
+                </NavButton>
+              </Grid.Column>
+            </Grid>
+          </Message>
+        </React.Fragment>
       )}
     </React.Fragment>
   );
