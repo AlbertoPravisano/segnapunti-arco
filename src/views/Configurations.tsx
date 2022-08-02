@@ -15,9 +15,9 @@ const Configurations = () => {
   return (
     <React.Fragment>
       <Grid>
-        {Object.entries(configuration).map((entry, index) => (
+        {Object.entries(configuration).map((entry) => (
           <Parameter
-            key={index}
+            key={entry[0]}
             entry={entry}
             updateParameter={(key, value) => {
               let conf: any = { ...newConf };
