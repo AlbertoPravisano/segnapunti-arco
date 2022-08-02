@@ -3,26 +3,26 @@ import { useDispatch } from "react-redux";
 import { Container, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
 import logo from "../images/target-512.png";
-import { cambiaView } from "../redux/reducer";
-import { StatoPartita, StatoPartitaEnum } from "../tools/partita";
+import { changeView } from "../redux/reducer";
+import { View, ViewsEnum } from "../tools/match";
 
 interface Props {
-  statoPartita: StatoPartita;
-  giocatoriInizializzati: boolean;
+  view: View;
+  playersInitialized: boolean;
   children: any;
 }
 
 const HeaderMenuMobile: React.FC<Props> = ({
-  statoPartita,
-  giocatoriInizializzati,
+  view,
+  playersInitialized,
   children,
 }) => {
   const [sidebarOpened, setSidebarOpened] = React.useState(false);
   const dispatch = useDispatch();
 
-  const handleMenuItemClicked = (nuovoStato: StatoPartita) => {
+  const handleMenuItemClicked = (newView: View) => {
     setSidebarOpened(false);
-    dispatch(cambiaView(nuovoStato));
+    dispatch(changeView(newView));
   };
 
   return (
@@ -37,8 +37,8 @@ const HeaderMenuMobile: React.FC<Props> = ({
         <Menu.Item
           as="a"
           header
-          active={statoPartita === StatoPartitaEnum.HOME}
-          onClick={() => handleMenuItemClicked(StatoPartitaEnum.HOME)}
+          active={view === ViewsEnum.HOME}
+          onClick={() => handleMenuItemClicked(ViewsEnum.HOME)}
         >
           <img alt="logo" src={logo} />
           <br />
@@ -48,36 +48,32 @@ const HeaderMenuMobile: React.FC<Props> = ({
         <Menu.Item
           as="a"
           active={
-            statoPartita === StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI ||
-            statoPartita === StatoPartitaEnum.PARTITA_IN_CORSO
+            view === ViewsEnum.PLAYERS_INITIALIZATION ||
+            view === ViewsEnum.MATCH_STARTED
           }
           onClick={() => {
             handleMenuItemClicked(
-              giocatoriInizializzati
-                ? StatoPartitaEnum.PARTITA_IN_CORSO
-                : StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI
+              playersInitialized
+                ? ViewsEnum.MATCH_STARTED
+                : ViewsEnum.PLAYERS_INITIALIZATION
             );
           }}
         >
           Vai alla partita
         </Menu.Item>
-        {giocatoriInizializzati && (
+        {playersInitialized && (
           <Menu.Item
             as="a"
-            active={statoPartita === StatoPartitaEnum.PARTITA_CONCLUSA}
-            onClick={() =>
-              handleMenuItemClicked(StatoPartitaEnum.PARTITA_CONCLUSA)
-            }
+            active={view === ViewsEnum.RESULTS_MATCH}
+            onClick={() => handleMenuItemClicked(ViewsEnum.RESULTS_MATCH)}
           >
             Risultati
           </Menu.Item>
         )}
         <Menu.Item
           as="a"
-          active={statoPartita === StatoPartitaEnum.PUNTEGGI_PARTITE_PRECEDENTI}
-          onClick={() =>
-            handleMenuItemClicked(StatoPartitaEnum.PUNTEGGI_PARTITE_PRECEDENTI)
-          }
+          active={view === ViewsEnum.LEADERBOARD}
+          onClick={() => handleMenuItemClicked(ViewsEnum.LEADERBOARD)}
         >
           Punteggi precedenti
         </Menu.Item>

@@ -1,28 +1,28 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import { calcolaPunteggioTotale, RisultatiGiocatore } from "../tools/partita";
+import { getScoreFromMatches, PlayerHistory } from "../tools/match";
 
 interface Props {
-  risultatiGiocatore: RisultatiGiocatore;
+  playerHistory: PlayerHistory;
 }
 
-const TabellaPunteggi: React.FC<Props> = ({ risultatiGiocatore }) => {
+const TablePlayerHistory: React.FC<Props> = ({ playerHistory }) => {
   return (
     <Table celled unstackable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">
-            {risultatiGiocatore.giocatore}
+            {playerHistory.playerName}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        {risultatiGiocatore.partite.map((partita, index) => {
+        {playerHistory.matches.map((match, index) => {
           return (
             <Table.Row key={index}>
-              <Table.Cell>{partita.data}</Table.Cell>
-              <Table.Cell>{partita.punteggio}</Table.Cell>
+              <Table.Cell>{match.date}</Table.Cell>
+              <Table.Cell>{match.points}</Table.Cell>
             </Table.Row>
           );
         })}
@@ -31,8 +31,7 @@ const TabellaPunteggi: React.FC<Props> = ({ risultatiGiocatore }) => {
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">
-            Punteggio totale:{" "}
-            {calcolaPunteggioTotale(risultatiGiocatore.partite)}
+            Punteggio totale: {getScoreFromMatches(playerHistory.matches)}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>
@@ -40,4 +39,4 @@ const TabellaPunteggi: React.FC<Props> = ({ risultatiGiocatore }) => {
   );
 };
 
-export default TabellaPunteggi;
+export default TablePlayerHistory;

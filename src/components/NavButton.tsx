@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Button, ButtonProps } from "semantic-ui-react";
-import { cambiaView } from "../redux/reducer";
-import { StatoPartita } from "../tools/partita";
+import { changeView } from "../redux/reducer";
+import { View } from "../tools/match";
 
 interface Props {
   children: any;
-  view: StatoPartita;
+  view: View;
 }
 
 const NavButton: React.FC<Props & ButtonProps> = ({
@@ -15,8 +15,9 @@ const NavButton: React.FC<Props & ButtonProps> = ({
   ...props
 }) => {
   const dispatch = useDispatch();
+
   return (
-    <Button onClick={() => dispatch(cambiaView(view))} {...props}>
+    <Button onClick={() => dispatch(changeView(view))} {...props}>
       {children}
     </Button>
   );

@@ -3,42 +3,34 @@ import { Tab, Message } from "semantic-ui-react";
 
 import ConfirmButton from "../components/ConfirmButton";
 import NavButton from "../components/NavButton";
-import TabellaPunteggi from "../components/TabellaPunteggi";
-import {
-  CronologiaGiocatori,
-  getCronologiaGiocatori,
-  getRisultatiGiocatore,
-} from "../tools/partita";
+import TablePlayerHistory from "../components/TablePlayerHistory";
+import { ViewsEnum } from "../tools/match";
+import { getHistoryFromStorage } from "../tools/storage";
 
 const LeaderBoard = () => {
-  const [cronologiaGiocatori, setCronologiaGiocatori] =
-    React.useState<CronologiaGiocatori>(getCronologiaGiocatori());
+  const [playersHistory, setPlayersHistory] = React.useState(
+    getHistoryFromStorage()
+  );
 
-  const nessunGiocatorePrecedente = cronologiaGiocatori.length === 0;
+  const isLeaderboardEmpty = playersHistory.length === 0;
 
   return (
     <React.Fragment>
-      {nessunGiocatorePrecedente ? (
+      {isLeaderboardEmpty ? (
         <React.Fragment>
           <Message info content="La cronologia delle partite è vuota" />
-          <NavButton primary view="INIZIALIZZAZIONE_GIOCATORI">
+          <NavButton primary view={ViewsEnum.PLAYERS_INITIALIZATION}>
             Inizia una partita
           </NavButton>
         </React.Fragment>
       ) : (
         <React.Fragment>
           <Tab
-            panes={cronologiaGiocatori.map((giocatore, index) => {
+            panes={playersHistory.map((playerHistory) => {
               return {
-                menuItem: giocatore.giocatore,
-                key: index,
+                menuItem: playerHistory.playerName,
                 render: () => (
-                  <TabellaPunteggi
-                    risultatiGiocatore={getRisultatiGiocatore(
-                      giocatore.giocatore,
-                      cronologiaGiocatori
-                    )}
-                  />
+                  <TablePlayerHistory playerHistory={playerHistory} />
                 ),
               };
             })}
@@ -47,7 +39,7 @@ const LeaderBoard = () => {
             negative
             onConfirm={() => {
               localStorage.clear();
-              setCronologiaGiocatori([]);
+              setPlayersHistory([]);
             }}
           >
             Elimina l'intera leaderboard

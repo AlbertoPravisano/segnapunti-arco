@@ -2,11 +2,17 @@ import React from "react";
 import { Button, ButtonProps, Confirm } from "semantic-ui-react";
 
 interface Props {
+  content?: string;
+  cancelButton?: string;
+  confirmButton?: string;
   onConfirm: () => void;
   onCancel?: () => void;
 }
 
 const ConfirmButton: React.FC<Props & ButtonProps> = ({
+  content,
+  cancelButton,
+  confirmButton,
   onConfirm,
   onCancel,
   children,
@@ -30,9 +36,9 @@ const ConfirmButton: React.FC<Props & ButtonProps> = ({
       </Button>
       <Confirm
         open={open}
-        content="Sei sicuro di voler eliminare la Leaderboard?"
-        cancelButton="Annulla"
-        confirmButton="Procedi"
+        content={content || "Sei sicuro di voler procedere?"}
+        cancelButton={cancelButton || "Annulla"}
+        confirmButton={confirmButton || "Procedi"}
         onCancel={onCloseLocal}
         onConfirm={onConfirmLocal}
       />

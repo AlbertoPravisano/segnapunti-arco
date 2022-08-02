@@ -1,60 +1,56 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Giocatore } from "../tools/giocatore";
-import { StatoPartitaEnum, StatoPartita } from "../tools/partita";
-import { Tiro } from "../tools/tiro";
+import { Player } from "../tools/player";
+import { ViewsEnum, View } from "../tools/match";
+import { Shot } from "../tools/shot";
 
 export interface Init {
-  statoPartita: StatoPartita;
-  giocatori: Giocatore[];
+  view: View;
+  players: Player[];
 }
 
 const initialState: Init = {
-  statoPartita: StatoPartitaEnum.HOME,
-  giocatori: [],
+  view: ViewsEnum.HOME,
+  players: [],
 };
 
 export const cassaSlice = createSlice({
-  name: "gioco",
+  name: "match",
   initialState,
   reducers: {
-    cambiaView: (state, action: PayloadAction<StatoPartita>) => {
-      state.statoPartita = action.payload;
+    changeView: (state, action: PayloadAction<View>) => {
+      state.view = action.payload;
     },
 
-    aggiungiGiocatore: (state, action: PayloadAction<string>) => {
-      state.giocatori.push({
-        nome: action.payload,
-        tiri: [],
+    addPlayer: (state, action: PayloadAction<string>) => {
+      state.players.push({
+        name: action.payload,
+        shots: [],
       });
     },
-    rimuoviUltimoGiocatore: (state) => {
-      state.giocatori.pop();
+    removeLastPlayer: (state) => {
+      state.players.pop();
     },
-    resettaStatoPartita: (state) => {
-      state.giocatori = [];
-      state.statoPartita = StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI;
+    cleanMatch: (state) => {
+      state.players = [];
+      state.view = ViewsEnum.PLAYERS_INITIALIZATION;
     },
-    aggiungiTiroGiocatore: (
+    addShotToPlayer: (
       state,
-      action: PayloadAction<{ nome: string; tiro: Tiro }>
+      action: PayloadAction<{ name: string; shot: Shot }>
     ) => {
-      const { nome, tiro } = action.payload;
-      const indexGiocatore = state.giocatori.findIndex((g) => g.nome === nome);
-      const indexTiroModificato = state.giocatori[
-        indexGiocatore
-      ].tiri.findIndex(
-        (tiroGiocatore) =>
-          tiroGiocatore.id === tiro.id &&
-          tiroGiocatore.tracciato === tiro.tracciato
+      const { name, shot } = action.payload;
+      const indexPlayer = state.players.findIndex((g) => g.name === name);
+      const indexShotChanged = state.players[indexPlayer].shots.findIndex(
+        (shotPlayer) =>
+          shotPlayer.id === shot.id && shotPlayer.track === shot.track
       );
-      if (indexTiroModificato > -1) {
-        state.giocatori[indexGiocatore].tiri[indexTiroModificato].punteggio =
-          tiro.punteggio;
-        state.giocatori[indexGiocatore].tiri[indexTiroModificato].tentativo =
-          tiro.tentativo;
+      if (indexShotChanged > -1) {
+        state.players[indexPlayer].shots[indexShotChanged].score = shot.score;
+        state.players[indexPlayer].shots[indexShotChanged].tentative =
+          shot.tentative;
       } else {
-        state.giocatori[indexGiocatore].tiri.push(tiro);
+        state.players[indexPlayer].shots.push(shot);
       }
     },
   },
@@ -62,11 +58,11 @@ export const cassaSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  aggiungiGiocatore,
-  rimuoviUltimoGiocatore,
-  resettaStatoPartita,
-  cambiaView,
-  aggiungiTiroGiocatore,
+  addPlayer,
+  removeLastPlayer,
+  cleanMatch,
+  changeView,
+  addShotToPlayer,
 } = cassaSlice.actions;
 
 export default cassaSlice.reducer;

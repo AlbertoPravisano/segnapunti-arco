@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Header, Image } from "semantic-ui-react";
+
 import image from "../images/target-512.png";
-import { cambiaView } from "../redux/reducer";
+import { changeView } from "../redux/reducer";
+import { ViewsEnum } from "../tools/match";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,7 +16,7 @@ const Home = () => {
         src={image}
         centered
         style={{ cursor: "pointer" }}
-        onClick={() => dispatch(cambiaView("INIZIALIZZAZIONE_GIOCATORI"))}
+        onClick={() => dispatch(changeView(ViewsEnum.PLAYERS_INITIALIZATION))}
       />
     </React.Fragment>
   );

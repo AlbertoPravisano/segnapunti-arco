@@ -1,7 +1,7 @@
 /**
  *
  * @param date
- * @returns Data in formato DD/MM/YYYY
+ * @returns date as DD/MM/YYYY
  */
 export const formatDateDDMMYYYY = (date: Date) => {
   let month = (date.getMonth() + 1).toString();

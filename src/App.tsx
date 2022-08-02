@@ -2,34 +2,31 @@ import React from "react";
 import { Container } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
-import { StatoPartitaEnum } from "./tools/partita";
+import { ViewsEnum } from "./tools/match";
 import { Init } from "./redux/reducer";
 
 import Home from "./views/Home";
 // import HeaderMenu from "./components/HeaderMenu";
-import Partita from "./views/Partita";
-import RisultatiPartita from "./views/RisultatiPartita";
-import InputGiocatori from "./views/InputGiocatori";
+import Match from "./views/Match";
+import MatchResults from "./views/MatchResults";
+import InsertPlayers from "./views/InsertPlayers";
 import LeaderBoard from "./views/LeaderBoard";
 import HeaderMenuMobile from "./components/HeaderMenuMobile";
 
 const App = () => {
-  const { statoPartita, giocatori } = useSelector((state: Init) => state);
+  const { view, players } = useSelector((state: Init) => state);
 
   return (
-    <HeaderMenuMobile
-      statoPartita={statoPartita}
-      giocatoriInizializzati={giocatori.length > 0}
-    >
+    <HeaderMenuMobile view={view} playersInitialized={players.length > 0}>
       <Container>
         {
           {
-            [StatoPartitaEnum.HOME]: <Home />,
-            [StatoPartitaEnum.INIZIALIZZAZIONE_GIOCATORI]: <InputGiocatori />,
-            [StatoPartitaEnum.PARTITA_IN_CORSO]: <Partita />,
-            [StatoPartitaEnum.PARTITA_CONCLUSA]: <RisultatiPartita />,
-            [StatoPartitaEnum.PUNTEGGI_PARTITE_PRECEDENTI]: <LeaderBoard />,
-          }[statoPartita]
+            [ViewsEnum.HOME]: <Home />,
+            [ViewsEnum.PLAYERS_INITIALIZATION]: <InsertPlayers />,
+            [ViewsEnum.MATCH_STARTED]: <Match />,
+            [ViewsEnum.RESULTS_MATCH]: <MatchResults />,
+            [ViewsEnum.LEADERBOARD]: <LeaderBoard />,
+          }[view]
         }
       </Container>
       <br />
