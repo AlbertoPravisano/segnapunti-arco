@@ -1,13 +1,13 @@
 {
   "home": {
-      "header": "Scoreboard for archers!"
+    "header": "Scoreboard for archers!"
   },
   "header": {
-      "home": "Home",
-      "go_to_match": "Go to match",
-      "results": "Results",
-      "leaderboard": "Leaderboard",
-      "mark": "Developed by Alberto!"
+    "home": "Home",
+    "go_to_match": "Go to match",
+    "results": "Results",
+    "leaderboard": "Leaderboard",
+    "mark": "Developed by Alberto!"
   },
   "buttons": {
     "confirm_proceed": "Are you sure you want to proceed?",
