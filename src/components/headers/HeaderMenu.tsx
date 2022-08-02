@@ -73,6 +73,14 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
         />
       </Menu.Item>
       <Menu.Item
+        as="a"
+        position="right"
+        active={view === ViewsEnum.CONFIGURATIONS}
+        onClick={() => dispatch(changeView(ViewsEnum.CONFIGURATIONS))}
+      >
+        {t("common.configuration")}
+      </Menu.Item>
+      <Menu.Item
         link
         href="https://www.t.me/PRAV01"
         target="_blank"

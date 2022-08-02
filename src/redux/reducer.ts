@@ -3,15 +3,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../tools/player";
 import { ViewsEnum, View } from "../tools/match";
 import { Shot } from "../tools/shot";
+import { Configuration, DEFAULT_CONF } from "../tools/configuration";
 
 export interface Init {
   view: View;
   players: Player[];
+  configuration: Configuration;
 }
 
 const initialState: Init = {
   view: ViewsEnum.HOME,
   players: [],
+  configuration: DEFAULT_CONF,
 };
 
 export const cassaSlice = createSlice({
@@ -21,7 +24,9 @@ export const cassaSlice = createSlice({
     changeView: (state, action: PayloadAction<View>) => {
       state.view = action.payload;
     },
-
+    changeConfiguration: (state, action: PayloadAction<Configuration>) => {
+      state.configuration = action.payload;
+    },
     addPlayer: (state, action: PayloadAction<string>) => {
       state.players.push({
         name: action.payload,
@@ -62,6 +67,7 @@ export const {
   removeLastPlayer,
   cleanMatch,
   changeView,
+  changeConfiguration,
   addShotToPlayer,
 } = cassaSlice.actions;
 

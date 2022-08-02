@@ -21,7 +21,8 @@
     "add": "Aggiungi",
     "track": "Tracciato",
     "total": "Totale",
-    "total_score": "Punteggio totale"
+    "total_score": "Punteggio totale",
+    "configuration": "Configurazioni"
   },
   "player_initialization":{
     "error_no_players_inserted": "Inserisci almeno un giocatore per iniziare la partita",
@@ -41,5 +42,9 @@
     "save_results": "Salva i risultati",
     "results_saved": "Hai salvato i risultati della partita!",
     "go_to_leaderboard": "Vai alla leaderboard"
+  },
+  "configurations":{
+    "update_configurations": "Aggiorna",
+    "reset_configurations": "Ripristina"
   }
 }

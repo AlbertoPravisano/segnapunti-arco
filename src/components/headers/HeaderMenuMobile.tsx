@@ -89,11 +89,13 @@ const HeaderMenuMobile: React.FC<Props> = ({
         <div style={{ bottom: 0, position: "absolute", width: "100%" }}>
           <Menu.Item />
           <Menu.Item
-            link
-            href="https://www.t.me/PRAV01"
-            target="_blank"
-            position="right"
+            as="a"
+            active={view === ViewsEnum.CONFIGURATIONS}
+            onClick={() => handleMenuItemClicked(ViewsEnum.CONFIGURATIONS)}
           >
+            {t("common.configuration")}
+          </Menu.Item>
+          <Menu.Item link href="https://www.t.me/PRAV01" target="_blank">
             {t("header.mark")}
           </Menu.Item>
         </div>

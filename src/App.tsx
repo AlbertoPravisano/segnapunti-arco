@@ -6,11 +6,12 @@ import { ViewsEnum } from "./tools/match";
 import { Init } from "./redux/reducer";
 
 import Home from "./views/Home";
-// import HeaderMenu from "./components/HeaderMenu";
 import Match from "./views/Match";
 import MatchResults from "./views/MatchResults";
 import PlayersInitialization from "./views/PlayersInitialization";
 import LeaderBoard from "./views/LeaderBoard";
+import Configurations from "./views/Configurations";
+// import HeaderMenu from "./components/HeaderMenu";
 import HeaderMenuMobile from "./components/headers/HeaderMenuMobile";
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
             [ViewsEnum.MATCH_STARTED]: <Match />,
             [ViewsEnum.RESULTS_MATCH]: <MatchResults />,
             [ViewsEnum.LEADERBOARD]: <LeaderBoard />,
+            [ViewsEnum.CONFIGURATIONS]: <Configurations />,
           }[view]
         }
       </Container>

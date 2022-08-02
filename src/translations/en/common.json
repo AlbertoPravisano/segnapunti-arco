@@ -21,7 +21,8 @@
     "add": "Add",
     "track": "Track",
     "total": "Total",
-    "total_score": "Total score"  
+    "total_score": "Total score",
+    "configuration": "Configurations"
   },
   "player_initialization":{
     "error_no_players_inserted": "Insert at least one player to start the match",
@@ -41,5 +42,9 @@
     "save_results": "Save results",
     "results_saved": "You saved the match results!",
     "go_to_leaderboard": "Go to leaderboard"
+  },
+  "configurations":{
+    "update_configurations": "Update",
+    "reset_configurations": "Reset"
   }
 }
