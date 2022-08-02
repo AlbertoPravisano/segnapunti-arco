@@ -1,9 +1,9 @@
 import React from "react";
 import { Tab, Message } from "semantic-ui-react";
 
-import ConfirmButton from "../components/ConfirmButton";
-import NavButton from "../components/NavButton";
-import TablePlayerHistory from "../components/TablePlayerHistory";
+import ConfirmButton from "../components/buttons/ConfirmButton";
+import NavButton from "../components/buttons/NavButton";
+import TablePlayerHistory from "../components/tables/TablePlayerHistory";
 import { ViewsEnum } from "../tools/match";
 import { getHistoryFromStorage } from "../tools/storage";
 

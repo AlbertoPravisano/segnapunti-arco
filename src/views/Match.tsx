@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon, Tab } from "semantic-ui-react";
 
-import TablePlayerMatch from "../components/TablePlayerMatch";
+import TablePlayerMatch from "../components/tables/TablePlayerMatch";
 import { changeView, Init } from "../redux/reducer";
 import { NUMBER_OF_TARGETS_PER_TRACK } from "../tools/shot";
 import { ViewsEnum } from "../tools/match";
-import NavButton from "../components/NavButton";
+import NavButton from "../components/buttons/NavButton";
 
 const Match = () => {
   const players = useSelector((state: Init) => state.players);

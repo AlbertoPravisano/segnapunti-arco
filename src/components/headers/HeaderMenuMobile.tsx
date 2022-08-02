@@ -2,9 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Container, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
 
-import logo from "../images/target-512.png";
-import { changeView } from "../redux/reducer";
-import { View, ViewsEnum } from "../tools/match";
+import logo from "../../images/target-512.png";
+import { changeView } from "../../redux/reducer";
+import { View, ViewsEnum } from "../../tools/match";
 
 interface Props {
   view: View;

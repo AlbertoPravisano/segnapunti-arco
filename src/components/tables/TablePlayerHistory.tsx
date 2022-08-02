@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
-import { getScoreFromMatches, PlayerHistory } from "../tools/match";
+import { getScoreFromMatches, PlayerHistory } from "../../tools/match";
 
 interface Props {
   playerHistory: PlayerHistory;

@@ -12,7 +12,7 @@ import { Player } from "../tools/player";
 import { getScoreFromMatches, PlayersHistory, ViewsEnum } from "../tools/match";
 import { getHistoryFromStorage } from "../tools/storage";
 
-const InsertPlayers = () => {
+const PlayersInitialization = () => {
   const players = useSelector((state: Init) => state.players);
   const dispatch = useDispatch();
 
@@ -55,7 +55,7 @@ const InsertPlayers = () => {
   );
 };
 
-export default InsertPlayers;
+export default PlayersInitialization;
 
 interface Props {
   players: Player[];

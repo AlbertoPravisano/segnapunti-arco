@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Icon, Message } from "semantic-ui-react";
 
-import NavButton from "../components/NavButton";
+import NavButton from "../components/buttons/NavButton";
 import { Init, cleanMatch } from "../redux/reducer";
 import { formatDateDDMMYYYY } from "../tools/dateUtils";
 import { ViewsEnum } from "../tools/match";

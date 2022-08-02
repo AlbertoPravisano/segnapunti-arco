@@ -2,13 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Table } from "semantic-ui-react";
 
-import { addShotToPlayer } from "../redux/reducer";
-import { getShotsByTrack, Player } from "../tools/player";
+import { addShotToPlayer } from "../../redux/reducer";
+import { getShotsByTrack, Player } from "../../tools/player";
 import {
   NUMBER_OF_TARGETS_PER_TRACK,
   Shot,
   getScoreFromShots,
-} from "../tools/shot";
+} from "../../tools/shot";
 
 interface Props {
   player: Player;

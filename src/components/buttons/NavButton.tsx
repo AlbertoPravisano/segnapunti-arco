@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Button, ButtonProps } from "semantic-ui-react";
-import { changeView } from "../redux/reducer";
-import { View } from "../tools/match";
+import { changeView } from "../../redux/reducer";
+import { View } from "../../tools/match";
 
 interface Props {
   children: any;

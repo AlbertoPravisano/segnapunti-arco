@@ -9,9 +9,9 @@ import Home from "./views/Home";
 // import HeaderMenu from "./components/HeaderMenu";
 import Match from "./views/Match";
 import MatchResults from "./views/MatchResults";
-import InsertPlayers from "./views/InsertPlayers";
+import PlayersInitialization from "./views/PlayersInitialization";
 import LeaderBoard from "./views/LeaderBoard";
-import HeaderMenuMobile from "./components/HeaderMenuMobile";
+import HeaderMenuMobile from "./components/headers/HeaderMenuMobile";
 
 const App = () => {
   const { view, players } = useSelector((state: Init) => state);
@@ -22,7 +22,7 @@ const App = () => {
         {
           {
             [ViewsEnum.HOME]: <Home />,
-            [ViewsEnum.PLAYERS_INITIALIZATION]: <InsertPlayers />,
+            [ViewsEnum.PLAYERS_INITIALIZATION]: <PlayersInitialization />,
             [ViewsEnum.MATCH_STARTED]: <Match />,
             [ViewsEnum.RESULTS_MATCH]: <MatchResults />,
             [ViewsEnum.LEADERBOARD]: <LeaderBoard />,
