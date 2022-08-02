@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Icon, Tab } from "semantic-ui-react";
+import { Header, Icon, Tab } from "semantic-ui-react";
 
 import TablePlayerMatch from "../components/tables/TablePlayerMatch";
 import { changeView, Init } from "../redux/reducer";
@@ -31,6 +31,10 @@ const Match = () => {
 
   return (
     <React.Fragment>
+      <Header as="h2" floated="left">
+        <Icon name="bolt" />
+        <Header.Content>{t("match.header")}</Header.Content>
+      </Header>
       <NavButton
         icon
         labelPosition="right"

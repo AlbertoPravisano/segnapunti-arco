@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Tab, Message } from "semantic-ui-react";
+import { Tab, Message, Header, Icon } from "semantic-ui-react";
 
 import ConfirmButton from "../components/buttons/ConfirmButton";
 import NavButton from "../components/buttons/NavButton";
@@ -18,6 +18,11 @@ const LeaderBoard = () => {
 
   return (
     <React.Fragment>
+      <Header as="h2">
+        <Icon name="gem" />
+        <Header.Content>{t("leaderboard.header")}</Header.Content>
+      </Header>
+      <br />
       {isLeaderboardEmpty ? (
         <React.Fragment>
           <Message info content={t("leaderboard.empty_leaderboard")} />

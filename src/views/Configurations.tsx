@@ -1,19 +1,34 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid, Input } from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Input, Message } from "semantic-ui-react";
 
-import { changeConfiguration, Init } from "../redux/reducer";
-import { DEFAULT_CONF } from "../tools/configuration";
+import { changeConfiguration, changeView, Init } from "../redux/reducer";
+import { DEFAULT_CONF, isValidConfig } from "../tools/configuration";
+import { ViewsEnum } from "../tools/match";
 
 const Configurations = () => {
   const configuration = useSelector((state: Init) => state.configuration);
   const [newConf, setNewConf] = React.useState(configuration);
+  const [error, setError] = React.useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
 
+  React.useEffect(() => {
+    if (isValidConfig(newConf)) {
+      setError(false);
+    } else {
+      setError(true);
+    }
+  }, [newConf]);
+
   return (
     <React.Fragment>
+      <Header as="h2">
+        <Icon name="cogs" />
+        <Header.Content>{t("configurations.header")}</Header.Content>
+      </Header>
+      <br />
       <Grid>
         {Object.entries(configuration).map((entry) => (
           <Parameter
@@ -27,6 +42,25 @@ const Configurations = () => {
           />
         ))}
       </Grid>
+      <br />
+      <br />
+      {error && (
+        <React.Fragment>
+          <Message error>
+            <Message.Header>
+              {t("configurations.error_in_configuration")}
+            </Message.Header>
+            <Message.List
+              items={[
+                "shots_per_tentative * tentatives = points.length()",
+                "shots_per_track > 0",
+              ]}
+            />
+          </Message>
+          <br />
+          <br />
+        </React.Fragment>
+      )}
       <Button.Group floated="right">
         <Button
           negative
@@ -37,7 +71,11 @@ const Configurations = () => {
         <Button.Or text="o" />
         <Button
           primary
-          onClick={() => dispatch(changeConfiguration({ ...newConf }))}
+          disabled={error}
+          onClick={() => {
+            dispatch(changeConfiguration({ ...newConf }));
+            dispatch(changeView(ViewsEnum.HOME));
+          }}
         >
           {t("configurations.update_configurations")}
         </Button>

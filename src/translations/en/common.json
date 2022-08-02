@@ -25,18 +25,22 @@
     "configuration": "Configurations"
   },
   "player_initialization":{
+    "header":"Players initialization",
     "error_no_players_inserted": "Insert at least one player to start the match",
     "revert_last_insertion": "Revert last player inserted",
     "total_score_old_matches": "Total score old matches"
   },
   "leaderboard": {
+    "header":"Leaderboard",
     "empty_leaderboard": "The leaderboard is empty!",
     "delete_leaderboard": "Clean the entire leaderboard"
   },
   "match": {
+    "header": "Match",
     "go_to_results": "Go to match results"
   },
   "results": {
+    "header":"Results",
     "return_to_match": "Return to current match",
     "start_new_game": "Start new match",
     "save_results": "Save results",
@@ -44,7 +48,9 @@
     "go_to_leaderboard": "Go to leaderboard"
   },
   "configurations":{
+    "header": "Configurations",
     "update_configurations": "Update",
+    "error_in_configuration":"There was a mistake in your configuration: Check every requirement is respected:",
     "reset_configurations": "Reset"
   }
 }

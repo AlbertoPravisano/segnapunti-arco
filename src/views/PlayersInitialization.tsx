@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Input, Form, Grid } from "semantic-ui-react";
+import { Button, Input, Form, Grid, Header, Icon } from "semantic-ui-react";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -28,6 +28,11 @@ const PlayersInitialization = () => {
 
   return (
     <React.Fragment>
+      <Header as="h2">
+        <Icon name="users" />
+        <Header.Content>{t("player_initialization.header")}</Header.Content>
+      </Header>
+      <br />
       <PlayersInMatch
         players={players}
         playersHistory={getHistoryFromStorage()}

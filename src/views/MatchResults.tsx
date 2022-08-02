@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid, Icon, Message } from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Message } from "semantic-ui-react";
 
 import NavButton from "../components/buttons/NavButton";
 import { Init, cleanMatch } from "../redux/reducer";
@@ -53,6 +53,10 @@ const MatchResults = () => {
 
   return (
     <React.Fragment>
+      <Header as="h2">
+        <Icon name="numbered list" />
+        <Header.Content>{t("results.header")}</Header.Content>
+      </Header>
       <Grid>
         {players.map((player, index) => {
           return (
