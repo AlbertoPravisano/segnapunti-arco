@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Input, Form, Grid } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 
 import {
   addPlayer,
@@ -15,6 +16,7 @@ import { getHistoryFromStorage } from "../tools/storage";
 const PlayersInitialization = () => {
   const players = useSelector((state: Init) => state.players);
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
 
   const noPlayersInMatch = players.length === 0;
 
@@ -34,7 +36,7 @@ const PlayersInitialization = () => {
       <Button.Group
         title={
           noPlayersInMatch
-            ? "Inserisci almeno un giocatore per iniziare la partita"
+            ? t("player_initialization.error_no_players_inserted")
             : undefined
         }
         floated="right"
@@ -44,11 +46,11 @@ const PlayersInitialization = () => {
           disabled={noPlayersInMatch}
           onClick={() => dispatch(removeLastPlayer())}
         >
-          Annulla l'ultimo inserimento
+          {t("player_initialization.revert_last_insertion")}
         </Button>
         <Button.Or text="o" />
         <Button primary disabled={noPlayersInMatch} onClick={onStartNewMatch}>
-          Inizia partita
+          {t("common.start_match")}
         </Button>
       </Button.Group>
     </React.Fragment>
@@ -63,14 +65,16 @@ interface Props {
 }
 
 const PlayersInMatch: React.FC<Props> = ({ players, playersHistory }) => {
+  const { t } = useTranslation("common");
+
   return (
     <Grid>
       {players.length > 0 ? (
         <React.Fragment>
           <Grid.Row>
-            <Grid.Column width="6">Nome giocatore</Grid.Column>
+            <Grid.Column width="6">{t("common.player_name")}</Grid.Column>
             <Grid.Column width="4">
-              Punteggio totale partite precedenti
+              {t("player_initialization.total_score_old_matches")}
             </Grid.Column>
           </Grid.Row>
           {players.map((player, index) => {
@@ -84,7 +88,7 @@ const PlayersInMatch: React.FC<Props> = ({ players, playersHistory }) => {
             return (
               <Grid.Row key={index}>
                 <Grid.Column width="6">
-                  Giocatore {index + 1}:{" "}
+                  {t("common.player")} {index + 1}:{" "}
                   <Input transparent readOnly value={player.name} />
                 </Grid.Column>
 
@@ -103,6 +107,7 @@ const PlayersInMatch: React.FC<Props> = ({ players, playersHistory }) => {
 const AddNewPlayer = () => {
   const [name, setName] = React.useState("");
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
   const nameInserted = name.length > 0;
 
   return (
@@ -123,7 +128,7 @@ const AddNewPlayer = () => {
             }
           />
           <Button disabled={!nameInserted} type="submit">
-            Aggiungi
+            {t("common.add")}
           </Button>
         </Form.Field>
       </Form>

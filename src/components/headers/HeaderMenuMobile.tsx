@@ -1,6 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Container, Icon, Menu, Segment, Sidebar } from "semantic-ui-react";
+import {
+  Container,
+  Flag,
+  Icon,
+  Menu,
+  Segment,
+  Sidebar,
+} from "semantic-ui-react";
 
 import logo from "../../images/target-512.png";
 import { changeView } from "../../redux/reducer";
@@ -18,6 +26,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
   children,
 }) => {
   const [sidebarOpened, setSidebarOpened] = React.useState(false);
+  const [t, i18n] = useTranslation("common");
   const dispatch = useDispatch();
 
   const handleMenuItemClicked = (newView: View) => {
@@ -43,7 +52,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
           <img alt="logo" src={logo} />
           <br />
           <br />
-          Home
+          {t("header.home")}
         </Menu.Item>
         <Menu.Item
           as="a"
@@ -59,7 +68,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
             );
           }}
         >
-          Vai alla partita
+          {t("header.go_to_match")}
         </Menu.Item>
         {playersInitialized && (
           <Menu.Item
@@ -67,7 +76,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
             active={view === ViewsEnum.RESULTS_MATCH}
             onClick={() => handleMenuItemClicked(ViewsEnum.RESULTS_MATCH)}
           >
-            Risultati
+            {t("header.results")}
           </Menu.Item>
         )}
         <Menu.Item
@@ -75,7 +84,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
           active={view === ViewsEnum.LEADERBOARD}
           onClick={() => handleMenuItemClicked(ViewsEnum.LEADERBOARD)}
         >
-          Punteggi precedenti
+          {t("header.leaderboard")}
         </Menu.Item>
         <div style={{ bottom: 0, position: "absolute", width: "100%" }}>
           <Menu.Item />
@@ -85,7 +94,7 @@ const HeaderMenuMobile: React.FC<Props> = ({
             target="_blank"
             position="right"
           >
-            Sviluppato da Alberto!
+            {t("header.mark")}
           </Menu.Item>
         </div>
       </Sidebar>
@@ -101,6 +110,18 @@ const HeaderMenuMobile: React.FC<Props> = ({
             <Menu pointing secondary size="large">
               <Menu.Item onClick={() => setSidebarOpened(true)}>
                 <Icon name="sidebar" />
+              </Menu.Item>
+              <Menu.Item position="right">
+                <Flag
+                  name="italy"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => i18n.changeLanguage("it")}
+                />
+                <Flag
+                  name="gb"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => i18n.changeLanguage("en")}
+                />
               </Menu.Item>
             </Menu>
           </Container>

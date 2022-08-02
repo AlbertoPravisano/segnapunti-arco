@@ -1,0 +1,45 @@
+{
+  "home": {
+    "header": "Segnapunti per tiro con l'arco!"
+  },
+  "header": {
+    "home": "Home",
+    "go_to_match": "Vai alla partita",
+    "results": "Risultati",
+    "leaderboard": "Punteggi precedenti",
+    "mark": "Sviluppato da Alberto!"
+  },
+  "buttons": {
+    "confirm_proceed": "Sei sicuro di voler procedere?",
+    "revert_proceed": "Annulla",
+    "proceed": "Procedi"
+  },
+  "common": {
+    "start_match": "Inizia partita",
+    "player_name": "Nome giocatore",
+    "player": "Giocatore",
+    "add": "Aggiungi",
+    "track": "Tracciato",
+    "total": "Totale",
+    "total_score": "Punteggio totale"
+  },
+  "player_initialization":{
+    "error_no_players_inserted": "Inserisci almeno un giocatore per iniziare la partita",
+    "revert_last_insertion": "Annulla l'ultimo inserimento",    
+    "total_score_old_matches": "Punteggio totale partite precedenti"
+  },
+  "leaderboard": {
+    "empty_leaderboard": "La cronologia delle partite è vuota",
+    "delete_leaderboard": "Elimina l'intera leaderboard"
+  },
+  "match": {
+    "go_to_results": "Vai ai risultati"
+  },
+  "results": {
+    "return_to_match": "Torna alla partita in corso",
+    "start_new_game": "Inizia una nuova partita",
+    "save_results": "Salva i risultati",
+    "results_saved": "Hai salvato i risultati della partita!",
+    "go_to_leaderboard": "Vai alla leaderboard"
+  }
+}

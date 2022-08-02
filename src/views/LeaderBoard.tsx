@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Tab, Message } from "semantic-ui-react";
 
 import ConfirmButton from "../components/buttons/ConfirmButton";
@@ -11,6 +12,7 @@ const LeaderBoard = () => {
   const [playersHistory, setPlayersHistory] = React.useState(
     getHistoryFromStorage()
   );
+  const { t } = useTranslation("common");
 
   const isLeaderboardEmpty = playersHistory.length === 0;
 
@@ -18,9 +20,9 @@ const LeaderBoard = () => {
     <React.Fragment>
       {isLeaderboardEmpty ? (
         <React.Fragment>
-          <Message info content="La cronologia delle partite è vuota" />
+          <Message info content={t("leaderboard.empty_leaderboard")} />
           <NavButton primary view={ViewsEnum.PLAYERS_INITIALIZATION}>
-            Inizia una partita
+            {t("common.start_match")}
           </NavButton>
         </React.Fragment>
       ) : (
@@ -42,7 +44,7 @@ const LeaderBoard = () => {
               setPlayersHistory([]);
             }}
           >
-            Elimina l'intera leaderboard
+            {t("leaderboard.delete_leaderboard")}
           </ConfirmButton>
         </React.Fragment>
       )}

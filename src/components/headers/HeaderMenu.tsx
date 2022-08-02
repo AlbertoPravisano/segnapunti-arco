@@ -1,6 +1,7 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Menu } from "semantic-ui-react";
+import { Flag, Menu } from "semantic-ui-react";
 
 import logo from "../../images/target-512.png";
 import { changeView } from "../../redux/reducer";
@@ -13,6 +14,7 @@ interface Props {
 
 const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
   const dispatch = useDispatch();
+  const [t, i18n] = useTranslation("common");
 
   return (
     <Menu size="large">
@@ -22,7 +24,7 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
         onClick={() => dispatch(changeView(ViewsEnum.HOME))}
       >
         <img alt="logo" src={logo} />
-        &ensp;Home
+        &ensp;{t("header.home")}
       </Menu.Item>
       <Menu.Item
         as="a"
@@ -40,7 +42,7 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
           )
         }
       >
-        Vai alla partita
+        {t("header.go_to_match")}
       </Menu.Item>
       {playersInitialized && (
         <Menu.Item
@@ -48,7 +50,7 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
           active={view === ViewsEnum.RESULTS_MATCH}
           onClick={() => dispatch(changeView(ViewsEnum.RESULTS_MATCH))}
         >
-          Risultati
+          {t("header.results")}
         </Menu.Item>
       )}
       <Menu.Item
@@ -56,7 +58,19 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
         active={view === ViewsEnum.LEADERBOARD}
         onClick={() => dispatch(changeView(ViewsEnum.LEADERBOARD))}
       >
-        Punteggi precedenti
+        {t("header.leaderboard")}
+      </Menu.Item>
+      <Menu.Item position="right">
+        <Flag
+          name="italy"
+          style={{ cursor: "pointer" }}
+          onClick={() => i18n.changeLanguage("it")}
+        />
+        <Flag
+          name="gb"
+          style={{ cursor: "pointer" }}
+          onClick={() => i18n.changeLanguage("en")}
+        />
       </Menu.Item>
       <Menu.Item
         link
@@ -64,7 +78,7 @@ const HeaderMenu: React.FC<Props> = ({ view, playersInitialized }) => {
         target="_blank"
         position="right"
       >
-        Sviluppato da Alberto!
+        {t("header.mark")}
       </Menu.Item>
     </Menu>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button, ButtonProps, Confirm } from "semantic-ui-react";
 
 interface Props {
@@ -19,6 +20,7 @@ const ConfirmButton: React.FC<Props & ButtonProps> = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation("common");
 
   const onCloseLocal = () => {
     setOpen(false);
@@ -36,9 +38,9 @@ const ConfirmButton: React.FC<Props & ButtonProps> = ({
       </Button>
       <Confirm
         open={open}
-        content={content || "Sei sicuro di voler procedere?"}
-        cancelButton={cancelButton || "Annulla"}
-        confirmButton={confirmButton || "Procedi"}
+        content={content || t("buttons.confirm_proceed")}
+        cancelButton={cancelButton || t("buttons.revert_proceed")}
+        confirmButton={confirmButton || t("buttons.proceed")}
         onCancel={onCloseLocal}
         onConfirm={onConfirmLocal}
       />

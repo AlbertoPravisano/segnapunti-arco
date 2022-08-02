@@ -7,10 +7,12 @@ import { changeView, Init } from "../redux/reducer";
 import { NUMBER_OF_TARGETS_PER_TRACK } from "../tools/shot";
 import { ViewsEnum } from "../tools/match";
 import NavButton from "../components/buttons/NavButton";
+import { useTranslation } from "react-i18next";
 
 const Match = () => {
   const players = useSelector((state: Init) => state.players);
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
 
   // If everyone shot all the targets, move automatically to Results
   const NUMBER_OF_TRACKS = 2;
@@ -34,7 +36,7 @@ const Match = () => {
         floated="right"
         view={ViewsEnum.RESULTS_MATCH}
       >
-        Vai ai Risultati <Icon name="mail forward" />
+        {t("match.go_to_results")} <Icon name="mail forward" />
       </NavButton>
       <Tab
         panes={players.map((player) => ({
@@ -42,9 +44,9 @@ const Match = () => {
           render: () => (
             <React.Fragment>
               <br />
-              TRACCIATO A
+              {t("common.track")} A
               <TablePlayerMatch player={player} track="A" />
-              TRACCIATO B
+              {t("common.track")} B
               <TablePlayerMatch player={player} track="B" />
             </React.Fragment>
           ),

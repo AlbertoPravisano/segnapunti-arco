@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Icon, Message } from "semantic-ui-react";
 
@@ -16,8 +17,9 @@ const getMatchCurrentPlayer = (shots: Shot[]) => ({
 
 const MatchResults = () => {
   const players = useSelector((state: Init) => state.players);
-  const dispatch = useDispatch();
   const [isResultsSaved, setIsResultsSaved] = React.useState(false);
+  const dispatch = useDispatch();
+  const { t } = useTranslation("common");
 
   const onHandleSaveResults = () => {
     const oldPlayersHistory = getHistoryFromStorage();
@@ -64,28 +66,26 @@ const MatchResults = () => {
       <br />
       <Button.Group>
         <NavButton icon labelPosition="left" view={ViewsEnum.MATCH_STARTED}>
-          Torna alla partita in corso <Icon name="reply" />
+          {t("results.return_to_match")} <Icon name="reply" />
         </NavButton>
         <Button.Or text="o" />
         <Button negative floated="right" onClick={() => dispatch(cleanMatch())}>
-          Inizia una nuova partita
+          {t("results.start_new_game")}
         </Button>
         <Button.Or text="o" />
         <Button primary floated="right" onClick={onHandleSaveResults}>
-          Salva i risultati
+          {t("results.save_results")}
         </Button>
       </Button.Group>
       {isResultsSaved && (
         <Message info>
           <Grid>
             <Grid.Column width="8">
-              <Message.Header>
-                Hai salvato i risultati della partita!
-              </Message.Header>
+              <Message.Header>{t("results.results_saved")}</Message.Header>
             </Grid.Column>
             <Grid.Column width="8">
               <NavButton floated="right" view={ViewsEnum.LEADERBOARD}>
-                Vai alla leaderboard
+                {t("results.go_to_leaderboard")}
               </NavButton>
             </Grid.Column>
           </Grid>

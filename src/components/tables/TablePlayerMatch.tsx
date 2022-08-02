@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Table } from "semantic-ui-react";
 
@@ -18,6 +19,7 @@ interface Props {
 const TablePlayerMatch: React.FC<Props> = ({ player, track }) => {
   const shotsByTrack = getShotsByTrack(player, track);
   const dispatch = useDispatch();
+  const { t } = useTranslation("common");
 
   return (
     <Table celled compact definition unstackable>
@@ -64,7 +66,7 @@ const TablePlayerMatch: React.FC<Props> = ({ player, track }) => {
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan="10" textAlign="right">
-            Totale: {getScoreFromShots(shotsByTrack)}
+            {t("common.total")}: {getScoreFromShots(shotsByTrack)}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>

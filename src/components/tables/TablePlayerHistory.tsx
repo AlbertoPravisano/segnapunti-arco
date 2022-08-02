@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Table } from "semantic-ui-react";
 import { getScoreFromMatches, PlayerHistory } from "../../tools/match";
 
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const TablePlayerHistory: React.FC<Props> = ({ playerHistory }) => {
+  const { t } = useTranslation("common");
   return (
     <Table celled unstackable>
       <Table.Header>
@@ -31,7 +33,8 @@ const TablePlayerHistory: React.FC<Props> = ({ playerHistory }) => {
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">
-            Punteggio totale: {getScoreFromMatches(playerHistory.matches)}
+            {t("common.total_score")}{" "}
+            {getScoreFromMatches(playerHistory.matches)}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>
