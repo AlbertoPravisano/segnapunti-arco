@@ -1,7 +1,8 @@
 import React from "react";
-import { Tab, Message, Button } from "semantic-ui-react";
-import NavButton from "../components/NavButton";
+import { Tab, Message } from "semantic-ui-react";
 
+import ConfirmButton from "../components/ConfirmButton";
+import NavButton from "../components/NavButton";
 import TabellaPunteggi from "../components/TabellaPunteggi";
 import {
   CronologiaGiocatori,
@@ -42,15 +43,15 @@ const LeaderBoard = () => {
               };
             })}
           />
-          <Button
+          <ConfirmButton
             negative
-            onClick={() => {
+            onConfirm={() => {
               localStorage.clear();
               setCronologiaGiocatori([]);
             }}
           >
             Elimina l'intera leaderboard
-          </Button>
+          </ConfirmButton>
         </React.Fragment>
       )}
     </React.Fragment>
