@@ -41,18 +41,22 @@ const Configurations = () => {
       <br />
       <Grid>
         {Object.entries(newConf).map((entry) => {
+          const key = entry[0];
           const parameterInError =
-            (entry[0] === "tracks" && !isValidTracksConfig(entry[1])) ||
-            (entry[0] === "shots_per_track" &&
-              !isValidShotsPerTrackConfig(entry[1])) ||
-            !isValidPointsAndTentativesConfig(
-              configuration.points,
-              configuration.shots_per_tentative,
-              configuration.tentatives
-            );
+            (key === "tracks" && !isValidTracksConfig(newConf.tracks)) ||
+            (key === "shots_per_track" &&
+              !isValidShotsPerTrackConfig(newConf.shots_per_track)) ||
+            ((key === "points" ||
+              key === "shots_per_tentative" ||
+              key === "tentatives") &&
+              !isValidPointsAndTentativesConfig(
+                newConf.points,
+                newConf.shots_per_tentative,
+                newConf.tentatives
+              ));
           return (
             <Parameter
-              key={entry[0]}
+              key={key}
               entry={entry}
               error={parameterInError}
               updateParameter={(key, value) => {
