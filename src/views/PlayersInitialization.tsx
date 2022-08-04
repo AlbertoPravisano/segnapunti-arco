@@ -11,7 +11,7 @@ import {
 } from "../redux/reducer";
 import { Player } from "../tools/player";
 import { getScoreFromMatches, PlayersHistory, ViewsEnum } from "../tools/match";
-import { getHistoryFromStorage } from "../tools/storage";
+import { getHistoryFromStorage } from "../api/storage";
 
 const PlayersInitialization = () => {
   const players = useSelector((state: Init) => state.players);

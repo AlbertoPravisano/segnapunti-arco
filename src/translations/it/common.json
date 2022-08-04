@@ -51,6 +51,9 @@
     "header": "Configurazioni",
     "update_configurations": "Aggiorna",
     "error_in_configuration":"C'è stato un errore nella tua configurazione: Controlla che vengano rispettati i requisiti:",
-    "reset_configurations": "Ripristina"
+    "reset_configurations": "Ripristina",
+    "error_tracks":"tracks deve essere un elenco di lettere/parole/numeri all'interno di parentesi quadre, ciascuno dei quali deve essere circondato da apici",
+    "error_shots_per_track": "error_shots_per_track deve essere un numero maggiore di zero",
+    "error_tentatives": "il numero di elementi nella lista di points deve essere uguale a shots_per_tentative * tentatives (es. 9 = 3*3)"
   }
 }

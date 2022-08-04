@@ -8,7 +8,7 @@ import { Init, cleanMatch } from "../redux/reducer";
 import { formatDateDDMMYYYY } from "../tools/dateUtils";
 import { ViewsEnum } from "../tools/match";
 import { getScoreFromShots, Shot } from "../tools/shot";
-import { getHistoryFromStorage, setHistoryToStorage } from "../tools/storage";
+import { getHistoryFromStorage, setHistoryToStorage } from "../api/storage";
 
 const getMatchCurrentPlayer = (shots: Shot[]) => ({
   points: getScoreFromShots(shots),

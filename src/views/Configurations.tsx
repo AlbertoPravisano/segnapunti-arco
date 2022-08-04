@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Header, Icon, Input, Message } from "semantic-ui-react";
 
 import { changeConfiguration, changeView, Init } from "../redux/reducer";
-import { DEFAULT_CONF, isValidConfig } from "../tools/configuration";
+import {
+  DEFAULT_CONF,
+  isValidConfig,
+  isValidPointsAndTentativesConfig,
+  isValidShotsPerTrackConfig,
+  isValidTracksConfig,
+} from "../tools/configuration";
 import { ViewsEnum } from "../tools/match";
 
 const Configurations = () => {
@@ -30,17 +36,29 @@ const Configurations = () => {
       </Header>
       <br />
       <Grid>
-        {Object.entries(configuration).map((entry) => (
-          <Parameter
-            key={entry[0]}
-            entry={entry}
-            updateParameter={(key, value) => {
-              let conf: any = { ...newConf };
-              conf[key] = value;
-              setNewConf(conf);
-            }}
-          />
-        ))}
+        {Object.entries(configuration).map((entry) => {
+          const parameterInError =
+            (entry[0] === "tracks" && !isValidTracksConfig(entry[1])) ||
+            (entry[0] === "shots_per_track" &&
+              !isValidShotsPerTrackConfig(entry[1])) ||
+            !isValidPointsAndTentativesConfig(
+              configuration.points,
+              configuration.shots_per_tentative,
+              configuration.tentatives
+            );
+          return (
+            <Parameter
+              key={entry[0]}
+              entry={entry}
+              error={parameterInError}
+              updateParameter={(key, value) => {
+                let conf: any = { ...newConf };
+                conf[key] = value;
+                setNewConf(conf);
+              }}
+            />
+          );
+        })}
       </Grid>
       <br />
       <br />
@@ -52,8 +70,9 @@ const Configurations = () => {
             </Message.Header>
             <Message.List
               items={[
-                "shots_per_tentative * tentatives = points.length()",
-                "shots_per_track > 0",
+                t("configurations.error_tracks"),
+                t("configurations.error_shots_per_track"),
+                t("configurations.error_tentatives"),
               ]}
             />
           </Message>
@@ -88,10 +107,11 @@ export default Configurations;
 
 interface Props {
   entry: [string, any];
+  error: boolean;
   updateParameter: (key: string, value: any) => void;
 }
 
-const Parameter: React.FC<Props> = ({ entry, updateParameter }) => {
+const Parameter: React.FC<Props> = ({ entry, error, updateParameter }) => {
   const key = entry[0];
   const value = entry[1];
   const [state, setState] = React.useState(JSON.stringify(value));
@@ -118,6 +138,7 @@ const Parameter: React.FC<Props> = ({ entry, updateParameter }) => {
         <Input
           fluid
           value={state}
+          error={error}
           onChange={(e) => setState(e.target.value)}
           onBlur={onHandleBlur}
         />

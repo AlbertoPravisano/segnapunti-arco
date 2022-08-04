@@ -6,7 +6,7 @@ import ConfirmButton from "../components/buttons/ConfirmButton";
 import NavButton from "../components/buttons/NavButton";
 import TablePlayerHistory from "../components/tables/TablePlayerHistory";
 import { ViewsEnum } from "../tools/match";
-import { getHistoryFromStorage } from "../tools/storage";
+import { getHistoryFromStorage } from "../api/storage";
 
 const LeaderBoard = () => {
   const [playersHistory, setPlayersHistory] = React.useState(

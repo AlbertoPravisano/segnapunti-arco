@@ -1,4 +1,4 @@
-import { PlayersHistory } from "./match";
+import { PlayersHistory } from "../tools/match";
 // import { Configuration, DEFAULT_CONF } from "./configuration";
 
 export const getHistoryFromStorage: () => PlayersHistory = () => {

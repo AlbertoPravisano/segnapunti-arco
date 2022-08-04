@@ -14,13 +14,30 @@ export const DEFAULT_CONF = {
   points: [22, 20, 16, 16, 14, 10, 10, 8, 4],
 };
 
+const elementIsArrayOfType = (element: any, type: "string" | "number") => {
+  return Array.isArray(element) && element.every((t: any) => typeof t === type);
+};
+
+export const isValidTracksConfig = (tracks: any) =>
+  elementIsArrayOfType(tracks, "string");
+
+export const isValidShotsPerTrackConfig = (shotsPerTrack: any) =>
+  shotsPerTrack > 0 && typeof shotsPerTrack === "number";
+
+export const isValidPointsAndTentativesConfig = (
+  points: any,
+  shotsPerTentative: any,
+  tentatives: any
+) =>
+  elementIsArrayOfType(points, "number") &&
+  points.length === shotsPerTentative * tentatives;
+
 export const isValidConfig = (configuration: Configuration) => {
-  const { shots_per_track, tentatives, shots_per_tentative, points } =
+  const { tracks, shots_per_track, tentatives, shots_per_tentative, points } =
     configuration;
-
-  const nPointsEqualsTentatives =
-    points.length === shots_per_tentative * tentatives;
-  const atLeastOneShot = shots_per_track > 0;
-
-  return nPointsEqualsTentatives && atLeastOneShot;
+  return (
+    isValidTracksConfig(tracks) &&
+    isValidShotsPerTrackConfig(shots_per_track) &&
+    isValidPointsAndTentativesConfig(points, shots_per_tentative, tentatives)
+  );
 };
