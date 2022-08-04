@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/segnapunti-arco/static/css/main.e6c13ad2.css",
-    "main.js": "/segnapunti-arco/static/js/main.8d60eba9.js",
+    "main.js": "/segnapunti-arco/static/js/main.ca25c37d.js",
     "static/media/target-512.png": "/segnapunti-arco/static/media/target-512.dffb9248b45d26e43faf.png",
     "index.html": "/segnapunti-arco/index.html",
     "main.e6c13ad2.css.map": "/segnapunti-arco/static/css/main.e6c13ad2.css.map",
-    "main.8d60eba9.js.map": "/segnapunti-arco/static/js/main.8d60eba9.js.map"
+    "main.ca25c37d.js.map": "/segnapunti-arco/static/js/main.ca25c37d.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.8d60eba9.js"
+    "static/js/main.ca25c37d.js"
   ]
 }
