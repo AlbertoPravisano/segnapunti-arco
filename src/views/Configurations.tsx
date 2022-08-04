@@ -17,8 +17,12 @@ const Configurations = () => {
   const configuration = useSelector((state: Init) => state.configuration);
   const [newConf, setNewConf] = React.useState(configuration);
   const [error, setError] = React.useState(false);
-  const dispatch = useDispatch();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    setNewConf(configuration);
+  }, [configuration]);
 
   React.useEffect(() => {
     if (isValidConfig(newConf)) {
@@ -36,7 +40,7 @@ const Configurations = () => {
       </Header>
       <br />
       <Grid>
-        {Object.entries(configuration).map((entry) => {
+        {Object.entries(newConf).map((entry) => {
           const parameterInError =
             (entry[0] === "tracks" && !isValidTracksConfig(entry[1])) ||
             (entry[0] === "shots_per_track" &&
