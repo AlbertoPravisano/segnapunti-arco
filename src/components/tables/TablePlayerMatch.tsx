@@ -1,9 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Table } from "semantic-ui-react";
 
-import { addShotToPlayer } from "../../redux/reducer";
+import { addShotToPlayer, Init } from "../../redux/reducer";
 import { Configuration } from "../../tools/configuration";
 import { getShotsByTrack, Player } from "../../tools/player";
 import { Shot, getScoreFromShots } from "../../tools/shot";
@@ -151,13 +151,14 @@ const Cell: React.FC<CellProps> = ({
   cellScore,
   onCellSelected,
 }) => {
+  const configuration = useSelector((state: Init) => state.configuration);
   return (
     <Table.Cell
       style={
         shotValue &&
         shotValue.score === cellScore &&
         shotValue.tentative === tentative
-          ? { backgroundColor: "Cyan" }
+          ? { backgroundColor: configuration.color_selected_cell }
           : undefined
       }
       onClick={() => onCellSelected(idShot, tentative, cellScore)}

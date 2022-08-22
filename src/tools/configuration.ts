@@ -4,10 +4,12 @@ export interface Configuration {
   tentatives: number;
   shots_per_tentative: number;
   points: number[];
+  color_selected_cell: string;
 }
 
 export const DEFAULT_CONF = {
   tracks: ["A", "B"],
+  color_selected_cell: "Cyan",
   shots_per_track: 12,
   tentatives: 3,
   shots_per_tentative: 3,
