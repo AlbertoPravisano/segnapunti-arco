@@ -34,12 +34,22 @@ export const isValidPointsAndTentativesConfig = (
   elementIsArrayOfType(points, "number") &&
   points.length === shotsPerTentative * tentatives;
 
+export const isValidColorCell = (colorSelectedCell: any) =>
+  typeof colorSelectedCell === "string";
+
 export const isValidConfig = (configuration: Configuration) => {
-  const { tracks, shots_per_track, tentatives, shots_per_tentative, points } =
-    configuration;
+  const {
+    tracks,
+    shots_per_track,
+    tentatives,
+    shots_per_tentative,
+    points,
+    color_selected_cell,
+  } = configuration;
   return (
     isValidTracksConfig(tracks) &&
     isValidShotsPerTrackConfig(shots_per_track) &&
-    isValidPointsAndTentativesConfig(points, shots_per_tentative, tentatives)
+    isValidPointsAndTentativesConfig(points, shots_per_tentative, tentatives) &&
+    isValidColorCell(color_selected_cell)
   );
 };

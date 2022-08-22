@@ -6,6 +6,7 @@ import { Button, Grid, Header, Icon, Input, Message } from "semantic-ui-react";
 import { changeConfiguration, changeView, Init } from "../redux/reducer";
 import {
   DEFAULT_CONF,
+  isValidColorCell,
   isValidConfig,
   isValidPointsAndTentativesConfig,
   isValidShotsPerTrackConfig,
@@ -44,6 +45,8 @@ const Configurations = () => {
           const key = entry[0];
           const parameterInError =
             (key === "tracks" && !isValidTracksConfig(newConf.tracks)) ||
+            (key === "color_selected_cell" &&
+              !isValidColorCell(newConf.color_selected_cell)) ||
             (key === "shots_per_track" &&
               !isValidShotsPerTrackConfig(newConf.shots_per_track)) ||
             ((key === "points" ||
@@ -79,6 +82,7 @@ const Configurations = () => {
             <Message.List
               items={[
                 t("configurations.error_tracks"),
+                t("configurations.error_color_cell"),
                 t("configurations.error_shots_per_track"),
                 t("configurations.error_tentatives"),
               ]}

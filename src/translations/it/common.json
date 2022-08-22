@@ -54,6 +54,7 @@
     "reset_configurations": "Ripristina",
     "error_tracks":"tracks deve essere un elenco di lettere/parole/numeri all'interno di parentesi quadre, ciascuno dei quali deve essere circondato da apici",
     "error_shots_per_track": "error_shots_per_track deve essere un numero maggiore di zero",
-    "error_tentatives": "il numero di elementi nella lista di points deve essere uguale a shots_per_tentative * tentatives (es. 9 = 3*3)"
+    "error_tentatives": "il numero di elementi nella lista di points deve essere uguale a shots_per_tentative * tentatives (es. 9 = 3*3)",
+    "error_color_cell": "Il colore deve essere scritto correttamente (vedi https://developer.mozilla.org/docs/Web/CSS/color)"
   }
 }

@@ -54,6 +54,7 @@
     "reset_configurations": "Reset",
     "error_tracks":"tracks must be a sequence of words/numbers wrapped in [ ] and each of them must  be wrapped in quotation marks",
     "error_shots_per_track": "error_shots_per_track must be a number greater then zero",
-    "error_tentatives": "number of elements in list of points must be equal to shots_per_tentative * tentatives (ex. 9 = 3*3)"
+    "error_tentatives": "number of elements in list of points must be equal to shots_per_tentative * tentatives (ex. 9 = 3*3)",
+    "error_color_cell": "The color must be valid (see https://developer.mozilla.org/docs/Web/CSS/color)"
   }
 }
