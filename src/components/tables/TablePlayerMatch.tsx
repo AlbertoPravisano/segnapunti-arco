@@ -40,6 +40,7 @@ const TablePlayerMatch: React.FC<Props> = ({
               </Table.HeaderCell>
             ));
           })}
+          <Table.HeaderCell>MISS</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -71,7 +72,7 @@ const TablePlayerMatch: React.FC<Props> = ({
 
       <Table.Footer>
         <Table.Row>
-          <Table.HeaderCell colSpan="10" textAlign="right">
+          <Table.HeaderCell colSpan="11" textAlign="right">
             {t("common.total")}: {getScoreFromShots(shotsByTrack)}
           </Table.HeaderCell>
         </Table.Row>
@@ -120,6 +121,13 @@ const Row: React.FC<RowProps> = ({
           );
         });
       })}
+      <Cell
+        idShot={idShot}
+        shotValue={shotValue}
+        tentative={0}
+        cellScore={0}
+        onCellSelected={onCellSelected}
+      />
     </Table.Row>
   );
 };
