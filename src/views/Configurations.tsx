@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid, Header, Icon, Input, Message } from "semantic-ui-react";
+// import { TwitterPicker } from "react-color";
 
 import { changeConfiguration, changeView, Init } from "../redux/reducer";
 import {
@@ -39,6 +40,7 @@ const Configurations = () => {
         <Icon name="cogs" />
         <Header.Content>{t("configurations.header")}</Header.Content>
       </Header>
+      {/* <TwitterPicker onSwatchHover={(color, e) => {}} /> */}
       <br />
       <Grid>
         {Object.entries(newConf).map((entry) => {
