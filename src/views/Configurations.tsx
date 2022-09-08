@@ -182,6 +182,7 @@ const ColorParameter: React.FC<Props> = ({ entry, error, updateParameter }) => {
   }, [value]);
 
   const onHandleBlur = () => {
+    setPalette(false);
     let parsedValue;
     try {
       parsedValue = JSON.parse(state);
