@@ -9,7 +9,7 @@ export interface Configuration {
 
 export const DEFAULT_CONF = {
   tracks: ["A", "B"],
-  color_selected_cell: "Cyan",
+  color_selected_cell: "#8ED1FC",
   shots_per_track: 12,
   tentatives: 3,
   shots_per_tentative: 3,
