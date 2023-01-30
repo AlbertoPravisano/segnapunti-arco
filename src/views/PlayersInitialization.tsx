@@ -10,7 +10,12 @@ import {
   removeLastPlayer,
 } from "../redux/reducer";
 import { Player } from "../tools/player";
-import { getScoreFromMatches, PlayersHistory, ViewsEnum } from "../tools/match";
+import {
+  getAllPlayersNames,
+  getScoreFromMatches,
+  PlayersHistory,
+  ViewsEnum,
+} from "../tools/match";
 import { getHistoryFromStorage } from "../api/storage";
 
 const PlayersInitialization = () => {
@@ -117,6 +122,7 @@ const AddNewPlayer = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const nameInserted = name.length > 0;
+  const allPlayers = getAllPlayersNames();
 
   return (
     <React.Fragment>
@@ -131,10 +137,19 @@ const AddNewPlayer = () => {
         <Form.Field inline>
           <Input
             value={name}
+            list="players"
+            placeholder={t("common.player_name")}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setName(e.target.value)
             }
           />
+          <datalist id="players">
+            {Array.from({ length: allPlayers.length }, (_, i) => (
+              <option key={i} value={allPlayers[i]}>
+                {allPlayers[i]}
+              </option>
+            ))}
+          </datalist>
           <Button disabled={!nameInserted} type="submit">
             {t("common.add")}
           </Button>

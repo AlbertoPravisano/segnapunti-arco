@@ -1,3 +1,5 @@
+import { getHistoryFromStorage } from "../api/storage";
+
 export enum ViewsEnum {
   HOME = "HOME",
   PLAYERS_INITIALIZATION = "PLAYERS_INITIALIZATION",
@@ -27,6 +29,15 @@ export const getPlayerHistory = (
   return playersHistory.filter(
     (playerHistory) => playerHistory.playerName === playerName
   )[0];
+};
+
+export const getAllPlayersNames = () => {
+  const playersHistory = getHistoryFromStorage();
+  return [
+    ...new Set(
+      playersHistory.flatMap((playerHistory) => playerHistory.playerName)
+    ),
+  ];
 };
 
 export const getScoreFromMatches = (matches: Match[]) => {
