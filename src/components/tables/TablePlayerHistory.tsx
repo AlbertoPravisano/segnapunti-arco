@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Table } from "semantic-ui-react";
-import { getScoreFromMatches, PlayerHistory } from "../../tools/match";
+import { getMediumScore, PlayerHistory } from "../../tools/match";
 
 interface Props {
   playerHistory: PlayerHistory;
@@ -33,11 +33,7 @@ const TablePlayerHistory: React.FC<Props> = ({ playerHistory }) => {
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">
-            {t("common.medium_score")}{" "}
-            {Math.floor(
-              getScoreFromMatches(playerHistory.matches) /
-                playerHistory.matches.length
-            )}
+            {t("common.medium_score")} {getMediumScore(playerHistory.matches)}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>

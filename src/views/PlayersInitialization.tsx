@@ -12,7 +12,7 @@ import {
 import { Player } from "../tools/player";
 import {
   getAllPlayersNames,
-  getScoreFromMatches,
+  getMediumScore,
   PlayersHistory,
   ViewsEnum,
 } from "../tools/match";
@@ -87,7 +87,7 @@ const PlayersInMatch: React.FC<Props> = ({ players, playersHistory }) => {
           <Grid.Row>
             <Grid.Column width="6">{t("common.player_name")}</Grid.Column>
             <Grid.Column width="4">
-              {t("player_initialization.total_score_old_matches")}
+              {t("player_initialization.medium_score_old_matches")}
             </Grid.Column>
           </Grid.Row>
           {players.map((player, index) => {
@@ -96,7 +96,7 @@ const PlayersInMatch: React.FC<Props> = ({ players, playersHistory }) => {
             );
             const totalHistoryScore =
               indexPlayer > -1
-                ? getScoreFromMatches(playersHistory[indexPlayer].matches)
+                ? getMediumScore(playersHistory[indexPlayer].matches)
                 : 0;
             return (
               <Grid.Row key={index}>
@@ -122,7 +122,7 @@ const AddNewPlayer = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
   const nameInserted = name.length > 0;
-  const allPlayers = getAllPlayersNames();
+  const allPlayers = getAllPlayersNames().filter((player) => player !== "");
 
   return (
     <React.Fragment>

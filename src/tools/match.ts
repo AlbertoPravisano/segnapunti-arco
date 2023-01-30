@@ -45,3 +45,6 @@ export const getScoreFromMatches = (matches: Match[]) => {
   matches.forEach((match) => (score += match.points));
   return score;
 };
+
+export const getMediumScore = (matches: Match[]): number =>
+  Math.floor(getScoreFromMatches(matches) / matches.length);

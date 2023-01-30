@@ -30,7 +30,7 @@
     "header": "Players initialization",
     "error_no_players_inserted": "Insert at least one player to start the match",
     "revert_last_insertion": "Revert last player inserted",
-    "total_score_old_matches": "Total score old matches"
+    "medium_score_old_matches": "Medium score old matches"
   },
   "leaderboard": {
     "header": "Leaderboard",

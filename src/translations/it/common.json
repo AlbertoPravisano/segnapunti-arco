@@ -30,7 +30,7 @@
     "header": "Inizializzazione giocatori",
     "error_no_players_inserted": "Inserisci almeno un giocatore per iniziare la partita",
     "revert_last_insertion": "Annulla l'ultimo inserimento",
-    "total_score_old_matches": "Punteggio totale partite precedenti"
+    "medium_score_old_matches": "Punteggio medio partite precedenti"
   },
   "leaderboard": {
     "header": "Tabella punteggi",
