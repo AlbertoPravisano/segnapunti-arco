@@ -73,25 +73,26 @@ const MatchResults = () => {
       <br />
       <br />
       <br />
+      <br />
       <Grid>
         <Grid.Row>
-          <Grid.Column width="3">
+          <Grid.Column width="4">
             <strong>{t("common.player_name")}</strong>
           </Grid.Column>
-          <Grid.Column width="3">
+          <Grid.Column width="4">
             <strong>{t("common.total")}</strong>
           </Grid.Column>
-          <Grid.Column width="3">
+          <Grid.Column width="4">
             <strong>{t("results.details")}</strong>
           </Grid.Column>
         </Grid.Row>
         {players.map((player, index) => (
           <Grid.Row key={index} verticalAlign="middle">
-            <Grid.Column width="3">{player.name}</Grid.Column>
-            <Grid.Column width="3">
+            <Grid.Column width="4">{player.name}</Grid.Column>
+            <Grid.Column width="4">
               {getScoreFromShots(player.shots)}
             </Grid.Column>
-            <Grid.Column textAlign="center">
+            <Grid.Column textAlign="center" width="4">
               <Button
                 data-tooltip={t("results.details")}
                 icon
@@ -146,7 +147,7 @@ const renderModal = (
         {configuration.tracks.map((track, index) => (
           <React.Fragment key={`${track}${index}`}>
             {textTrack} {track}: {textTotal.toLowerCase()}{" "}
-            {getScoreFromShots(getShotsByTrack(player, track))}
+            <strong>{getScoreFromShots(getShotsByTrack(player, track))}</strong>
             <TablePlayerMatch
               player={player}
               configuration={configuration}
