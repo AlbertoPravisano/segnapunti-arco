@@ -22,15 +22,6 @@ export interface PlayerHistory {
 export type View = keyof typeof ViewsEnum;
 export type PlayersHistory = PlayerHistory[];
 
-export const getPlayerHistory = (
-  playerName: string,
-  playersHistory: PlayersHistory
-) => {
-  return playersHistory.filter(
-    (playerHistory) => playerHistory.playerName === playerName
-  )[0];
-};
-
 export const getAllPlayersNames = () => {
   const playersHistory = getHistoryFromStorage();
   return [
@@ -40,11 +31,16 @@ export const getAllPlayersNames = () => {
   ];
 };
 
-export const getScoreFromMatches = (matches: Match[]) => {
+const getScoreFromMatches = (matches: Match[]) => {
   let score = 0;
   matches.forEach((match) => (score += match.points));
   return score;
 };
 
-export const getMediumScore = (matches: Match[]): number =>
-  Math.floor(getScoreFromMatches(matches) / matches.length);
+export const getMediumScore = (matches: Match[]): number => {
+  if (matches && matches.length > 0) {
+    return Math.floor(getScoreFromMatches(matches) / matches.length);
+  } else {
+    return 0;
+  }
+};

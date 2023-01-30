@@ -5,6 +5,5 @@ export interface Player {
   shots: Shot[];
 }
 
-export const getShotsByTrack = (player: Player, track: string) => {
-  return player.shots.filter((shot) => shot.track === track);
-};
+export const getShotsByTrack = (player: Player, track: string) =>
+  player.shots.filter((shot) => shot.track === track);
