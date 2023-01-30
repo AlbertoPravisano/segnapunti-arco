@@ -1,27 +1,26 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Table } from "semantic-ui-react";
 
 import { addShotToPlayer, Init } from "../../redux/reducer";
 import { Configuration } from "../../tools/configuration";
 import { getShotsByTrack, Player } from "../../tools/player";
-import { Shot, getScoreFromShots } from "../../tools/shot";
+import { Shot } from "../../tools/shot";
 
 interface Props {
   player: Player;
   track: string;
   configuration: Configuration;
+  readOnly?: boolean;
 }
 
 const TablePlayerMatch: React.FC<Props> = ({
   player,
   track,
   configuration,
+  readOnly,
 }) => {
-  const shotsByTrack = getShotsByTrack(player, track);
   const dispatch = useDispatch();
-  const { t } = useTranslation("common");
 
   const tentatives = configuration.tentatives;
   const shotsPerTentative = configuration.shots_per_tentative;
@@ -34,7 +33,7 @@ const TablePlayerMatch: React.FC<Props> = ({
         <Table.Row>
           <Table.HeaderCell></Table.HeaderCell>
           {[...Array(tentatives).keys()].map((x, indexX) => {
-            return [...Array(shotsPerTentative).keys()].map((y, indexY) => (
+            return [...Array(shotsPerTentative).keys()].map((_, indexY) => (
               <Table.HeaderCell key={`${track}${indexX}${indexY}`}>
                 {indexX + 1}
               </Table.HeaderCell>
@@ -49,10 +48,11 @@ const TablePlayerMatch: React.FC<Props> = ({
           <Row
             key={index}
             idShot={index + 1}
-            shots={shotsByTrack}
+            shots={getShotsByTrack(player, track)}
             points={points}
             tentatives={tentatives}
             shotsPerTentative={shotsPerTentative}
+            readOnly={readOnly}
             onCellSelected={(id, tentative, score) =>
               dispatch(
                 addShotToPlayer({
@@ -69,14 +69,6 @@ const TablePlayerMatch: React.FC<Props> = ({
           />
         ))}
       </Table.Body>
-
-      <Table.Footer>
-        <Table.Row>
-          <Table.HeaderCell colSpan="11" textAlign="right">
-            {t("common.total")}: {getScoreFromShots(shotsByTrack)}
-          </Table.HeaderCell>
-        </Table.Row>
-      </Table.Footer>
     </Table>
   );
 };
@@ -88,6 +80,7 @@ interface RowProps {
   shots: Shot[];
   points: number[];
   tentatives: number;
+  readOnly?: boolean;
   shotsPerTentative: number;
   onCellSelected: (idShot: number, tentative: number, score: number) => void;
 }
@@ -97,6 +90,7 @@ const Row: React.FC<RowProps> = ({
   idShot,
   points,
   tentatives,
+  readOnly,
   shotsPerTentative,
   onCellSelected,
 }) => {
@@ -107,8 +101,8 @@ const Row: React.FC<RowProps> = ({
   return (
     <Table.Row>
       <Table.Cell>{idShot}</Table.Cell>
-      {[...Array(tentatives).keys()].map((x, indexX) => {
-        return [...Array(shotsPerTentative).keys()].map((y, indexY) => {
+      {[...Array(tentatives).keys()].map((_, indexX) => {
+        return [...Array(shotsPerTentative).keys()].map((_, indexY) => {
           return (
             <Cell
               key={`${indexX}${indexY}`}
@@ -116,7 +110,7 @@ const Row: React.FC<RowProps> = ({
               shotValue={shotValue}
               tentative={indexX + 1}
               cellScore={p.pop() || 0}
-              onCellSelected={onCellSelected}
+              onCellSelected={readOnly ? undefined : onCellSelected}
             />
           );
         });
@@ -126,7 +120,7 @@ const Row: React.FC<RowProps> = ({
         shotValue={shotValue}
         tentative={0}
         cellScore={0}
-        onCellSelected={onCellSelected}
+        onCellSelected={readOnly ? undefined : onCellSelected}
       />
     </Table.Row>
   );
@@ -137,7 +131,7 @@ interface CellProps {
   cellScore: number;
   tentative: number;
   shotValue?: Shot;
-  onCellSelected: (
+  onCellSelected?: (
     idShot: number,
     tentative: number,
     punteggio: number
@@ -161,7 +155,9 @@ const Cell: React.FC<CellProps> = ({
           ? { backgroundColor: configuration.color_selected_cell }
           : undefined
       }
-      onClick={() => onCellSelected(idShot, tentative, cellScore)}
+      onClick={() =>
+        onCellSelected && onCellSelected(idShot, tentative, cellScore)
+      }
     >
       {cellScore}
     </Table.Cell>

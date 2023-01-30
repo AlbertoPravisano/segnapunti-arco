@@ -1,7 +1,15 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Grid, Header, Icon, Message } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Grid,
+  Header,
+  Icon,
+  Message,
+  Tab,
+} from "semantic-ui-react";
 
 import NavButton from "../components/buttons/NavButton";
 import { Init, cleanMatch } from "../redux/reducer";
@@ -9,6 +17,8 @@ import { formatDateDDMMYYYY } from "../tools/dateUtils";
 import { ViewsEnum } from "../tools/match";
 import { getScoreFromShots, Shot } from "../tools/shot";
 import { getHistoryFromStorage, setHistoryToStorage } from "../api/storage";
+import TablePlayerMatch from "../components/tables/TablePlayerMatch";
+import { getShotsByTrack } from "../tools/player";
 
 const getMatchCurrentPlayer = (shots: Shot[]) => ({
   points: getScoreFromShots(shots),
@@ -16,8 +26,9 @@ const getMatchCurrentPlayer = (shots: Shot[]) => ({
 });
 
 const MatchResults = () => {
-  const players = useSelector((state: Init) => state.players);
+  const { players, configuration } = useSelector((state: Init) => state);
   const [isResultsSaved, setIsResultsSaved] = React.useState(false);
+  const [showDetails, setShowDetails] = React.useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation("common");
 
@@ -53,28 +64,70 @@ const MatchResults = () => {
 
   return (
     <React.Fragment>
-      <Header as="h2">
+      <Header as="h2" floated="left">
         <Icon name="numbered list" />
         <Header.Content>{t("results.header")}</Header.Content>
       </Header>
+      <NavButton
+        icon
+        labelPosition="left"
+        floated="right"
+        view={ViewsEnum.MATCH_STARTED}
+      >
+        {t("results.return_to_match")} <Icon name="reply" />
+      </NavButton>
       <br />
-      <Grid>
-        {players.map((player, index) => {
-          return (
-            <Grid.Row key={index}>
-              <Grid.Column width="3">{player.name}</Grid.Column>
-              <Grid.Column width="3">
-                {getScoreFromShots(player.shots)}
-              </Grid.Column>
-            </Grid.Row>
-          );
-        })}
-      </Grid>
+      <br />
+      <br />
+      <br />
+      <Checkbox
+        toggle
+        label="Mostra dettagli"
+        onChange={() => setShowDetails(!showDetails)}
+      />
+      <br />
+      <br />
+      {showDetails && (
+        <Tab
+          panes={players.map((player, index) => ({
+            menuItem: player.name,
+            render: () => (
+              <React.Fragment key={index}>
+                <br />
+                {configuration.tracks.map((track, index) => (
+                  <React.Fragment key={`${track}${index}`}>
+                    {t("common.track")} {track}:{" "}
+                    {t("common.total").toLowerCase()}{" "}
+                    {getScoreFromShots(getShotsByTrack(player, track))}
+                    <TablePlayerMatch
+                      player={player}
+                      configuration={configuration}
+                      track={track}
+                      readOnly
+                    />
+                  </React.Fragment>
+                ))}
+              </React.Fragment>
+            ),
+          }))}
+        />
+      )}
+      {!showDetails && (
+        <Grid>
+          {players.map((player, index) => {
+            return (
+              <Grid.Row key={index}>
+                <Grid.Column width="3">{player.name}</Grid.Column>
+                <Grid.Column width="3">
+                  {getScoreFromShots(player.shots)}
+                </Grid.Column>
+              </Grid.Row>
+            );
+          })}
+        </Grid>
+      )}
       <br />
       <Button.Group vertical floated="right">
-        <NavButton icon labelPosition="left" view={ViewsEnum.MATCH_STARTED}>
-          {t("results.return_to_match")} <Icon name="reply" />
-        </NavButton>
         <Button negative floated="right" onClick={() => dispatch(cleanMatch())}>
           {t("results.start_new_game")}
         </Button>
