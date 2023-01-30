@@ -27,6 +27,8 @@ const calculateScore = (
   shotsSplitted: number[][]
 ) => (tentative < tentatives ? shotsSplitted[tentative][shot] : 0);
 
+/* TODO: Perdita dello stato quando si cambia view */
+
 const Match = () => {
   const { t } = useTranslation("common");
   const { players, configuration } = useSelector((state: Init) => state);
