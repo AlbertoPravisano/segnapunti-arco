@@ -39,7 +39,13 @@
   },
   "match": {
     "header": "Partita",
-    "go_to_results": "Vai ai risultati"
+    "go_to_results": "Vai ai risultati",
+    "description1": "Ci troviamo nella traccia",
+    "description2": "tiro",
+    "description3": "su",
+    "description4": "Il giocatore",
+    "description5": "deve tirare",
+    "description6": "tentativo"
   },
   "results": {
     "header": "Risultati",

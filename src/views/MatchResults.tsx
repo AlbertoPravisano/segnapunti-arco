@@ -85,21 +85,24 @@ const MatchResults = () => {
             <strong>{t("results.details")}</strong>
           </Grid.Column>
         </Grid.Row>
-        {players.map((player, index) => {
-          return (
-            <Grid.Row key={index} verticalAlign="middle">
-              <Grid.Column width="3">{player.name}</Grid.Column>
-              <Grid.Column width="3">
-                {getScoreFromShots(player.shots)}
-              </Grid.Column>
-              <Grid.Column textAlign="center">
-                <Button icon circular onClick={() => setPlayerDetails(player)}>
-                  <Icon name="table" />
-                </Button>
-              </Grid.Column>
-            </Grid.Row>
-          );
-        })}
+        {players.map((player, index) => (
+          <Grid.Row key={index} verticalAlign="middle">
+            <Grid.Column width="3">{player.name}</Grid.Column>
+            <Grid.Column width="3">
+              {getScoreFromShots(player.shots)}
+            </Grid.Column>
+            <Grid.Column textAlign="center">
+              <Button
+                data-tooltip={t("results.details")}
+                icon
+                circular
+                onClick={() => setPlayerDetails(player)}
+              >
+                <Icon name="table" />
+              </Button>
+            </Grid.Column>
+          </Grid.Row>
+        ))}
         {playerDetails &&
           renderModal(
             playerDetails,

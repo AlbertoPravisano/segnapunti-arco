@@ -157,10 +157,13 @@ const Match = () => {
                       state.idTrack === indexTrack &&
                       state.currentPlayer === indexCurrentPlayer && (
                         <React.Fragment>
-                          Ci troviamo nella traccia {tracks[indexTrack]}, tiro{" "}
-                          {indexShot + 1} su {shots_per_track}. <br />
-                          Il giocatore <strong>{player.name}</strong> deve
-                          tirare (tentativo {tentative + 1}/{tentatives}):{" "}
+                          {t("match.description1")} {tracks[indexTrack]},{" "}
+                          {t("match.description2")} {indexShot + 1}{" "}
+                          {t("match.description3")} {shots_per_track}. <br />
+                          {t("match.description4")}{" "}
+                          <strong>{player.name}</strong>{" "}
+                          {t("match.description5")} ({t("match.description6")}{" "}
+                          {tentative + 1}/{tentatives}):{" "}
                           <Target
                             setScore={(score) =>
                               onSetScore(

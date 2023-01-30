@@ -39,7 +39,13 @@
   },
   "match": {
     "header": "Match",
-    "go_to_results": "Go to match results"
+    "go_to_results": "Go to match results",
+    "description1": "The current track is",
+    "description2": "shot",
+    "description3": "in",
+    "description4": "The player",
+    "description5": "must shot",
+    "description6": "tentative"
   },
   "results": {
     "header": "Results",
