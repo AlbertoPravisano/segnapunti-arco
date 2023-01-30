@@ -1,12 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Segment } from "semantic-ui-react";
+import { Button, Icon, Segment } from "semantic-ui-react";
 
 interface Props {
   setScore: (value: number) => void;
+  onRevert?: () => void;
 }
 
-const Target: React.FC<Props> = ({ setScore }) => {
+const Target: React.FC<Props> = ({ setScore, onRevert }) => {
   const { t } = useTranslation("common");
   return (
     <Segment basic compact textAlign="center" style={{ margin: "0 auto" }}>
@@ -55,7 +56,19 @@ const Target: React.FC<Props> = ({ setScore }) => {
           />
         </g>
       </svg>
-      <Button onClick={() => setScore(-1)}>{t("buttons.miss")}</Button>
+      {
+        <Button
+          disabled={onRevert === undefined}
+          icon
+          negative
+          onClick={onRevert}
+        >
+          {t("buttons.revert")} <Icon name="reply" />
+        </Button>
+      }
+      <Button onClick={() => setScore(-1)}>
+        {t("buttons.miss").toUpperCase()}
+      </Button>
     </Segment>
   );
 };

@@ -98,6 +98,22 @@ const Match = () => {
     }
   };
 
+  const onRevert = () => {
+    let newState = { ...state };
+    if (state.currentPlayer === 0) {
+      newState.currentPlayer = players.length - 1;
+      if (state.idShot === 0 && state.idTrack !== 0) {
+        newState.idShot = shots_per_track - 1;
+        newState.idTrack = newState.idTrack - 1;
+      } else {
+        newState.idShot = newState.idShot - 1;
+      }
+    } else {
+      newState.currentPlayer = newState.currentPlayer - 1;
+    }
+    setState({ ...newState });
+  };
+
   // If everyone shot all the targets, move automatically to Results
   React.useEffect(() => {
     const TOTAL_SHOTS_MATCH = shots_per_track * players.length * nTracks;
@@ -151,6 +167,13 @@ const Match = () => {
                                 tracks[indexTrack],
                                 score
                               )
+                            }
+                            onRevert={
+                              indexCurrentPlayer !== 0 ||
+                              indexTrack !== 0 ||
+                              indexShot !== 0
+                                ? () => onRevert()
+                                : undefined
                             }
                           />
                         </React.Fragment>

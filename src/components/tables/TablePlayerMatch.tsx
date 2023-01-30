@@ -32,7 +32,7 @@ const TablePlayerMatch: React.FC<Props> = ({
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell></Table.HeaderCell>
-          {[...Array(tentatives).keys()].map((x, indexX) => {
+          {[...Array(tentatives).keys()].map((_, indexX) => {
             return [...Array(shotsPerTentative).keys()].map((_, indexY) => (
               <Table.HeaderCell key={`${track}${indexX}${indexY}`}>
                 {indexX + 1}
@@ -44,10 +44,10 @@ const TablePlayerMatch: React.FC<Props> = ({
       </Table.Header>
 
       <Table.Body>
-        {[...Array(shotsPerTrack).keys()].map((x, index) => (
+        {[...Array(shotsPerTrack).keys()].map((_, index) => (
           <Row
             key={index}
-            idShot={index + 1}
+            idShot={index}
             shots={getShotsByTrack(player, track)}
             points={points}
             tentatives={tentatives}
@@ -100,7 +100,7 @@ const Row: React.FC<RowProps> = ({
 
   return (
     <Table.Row>
-      <Table.Cell>{idShot}</Table.Cell>
+      <Table.Cell>{idShot + 1}</Table.Cell>
       {[...Array(tentatives).keys()].map((_, indexX) => {
         return [...Array(shotsPerTentative).keys()].map((_, indexY) => {
           return (

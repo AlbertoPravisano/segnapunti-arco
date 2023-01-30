@@ -13,7 +13,8 @@
     "confirm_proceed": "Are you sure you want to proceed?",
     "revert_proceed": "Cancel",
     "proceed": "Proceed",
-    "miss": "MISS"
+    "miss": "Miss",
+    "revert": "Revert last operation"
   },
   "common": {
     "start_match": "Start match",

@@ -13,7 +13,8 @@
     "confirm_proceed": "Sei sicuro di voler procedere?",
     "revert_proceed": "Annulla",
     "proceed": "Procedi",
-    "miss": "MANCATO"
+    "miss": "Mancato",
+    "revert": "Anulla ultima operazione"
   },
   "common": {
     "start_match": "Inizia partita",
