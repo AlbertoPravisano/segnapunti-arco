@@ -43,6 +43,7 @@
   },
   "results": {
     "header": "Risultati",
+    "details": "Mostra i dettagli",
     "return_to_match": "Torna alla partita in corso",
     "start_new_game": "Inizia una nuova partita",
     "save_results": "Salva i risultati",
