@@ -12,7 +12,8 @@
   "buttons": {
     "confirm_proceed": "Are you sure you want to proceed?",
     "revert_proceed": "Cancel",
-    "proceed": "Proceed"
+    "proceed": "Proceed",
+    "miss": "MISS"
   },
   "common": {
     "start_match": "Start match",
@@ -24,14 +25,14 @@
     "total_score": "Total score",
     "configuration": "Configurations"
   },
-  "player_initialization":{
-    "header":"Players initialization",
+  "player_initialization": {
+    "header": "Players initialization",
     "error_no_players_inserted": "Insert at least one player to start the match",
     "revert_last_insertion": "Revert last player inserted",
     "total_score_old_matches": "Total score old matches"
   },
   "leaderboard": {
-    "header":"Leaderboard",
+    "header": "Leaderboard",
     "empty_leaderboard": "The leaderboard is empty!",
     "delete_leaderboard": "Clean the entire leaderboard"
   },
@@ -40,19 +41,19 @@
     "go_to_results": "Go to match results"
   },
   "results": {
-    "header":"Results",
+    "header": "Results",
     "return_to_match": "Return to current match",
     "start_new_game": "Start new match",
     "save_results": "Save results",
     "results_saved": "You saved the match results!",
     "go_to_leaderboard": "Go to leaderboard"
   },
-  "configurations":{
+  "configurations": {
     "header": "Configurations",
     "update_configurations": "Update",
-    "error_in_configuration":"There was a mistake in your configuration: Check every requirement is respected:",
+    "error_in_configuration": "There was a mistake in your configuration: Check every requirement is respected:",
     "reset_configurations": "Reset",
-    "error_tracks":"tracks must be a sequence of words/numbers wrapped in [ ] and each of them must  be wrapped in quotation marks",
+    "error_tracks": "tracks must be a sequence of words/numbers wrapped in [ ] and each of them must  be wrapped in quotation marks",
     "error_shots_per_track": "error_shots_per_track must be a number greater then zero",
     "error_tentatives": "number of elements in list of points must be equal to shots_per_tentative * tentatives (ex. 9 = 3*3)",
     "error_color_cell": "The color must be valid (see https://developer.mozilla.org/docs/Web/CSS/color)"

@@ -12,7 +12,8 @@
   "buttons": {
     "confirm_proceed": "Sei sicuro di voler procedere?",
     "revert_proceed": "Annulla",
-    "proceed": "Procedi"
+    "proceed": "Procedi",
+    "miss": "MANCATO"
   },
   "common": {
     "start_match": "Inizia partita",
@@ -24,14 +25,14 @@
     "total_score": "Punteggio totale",
     "configuration": "Configurazioni"
   },
-  "player_initialization":{
-    "header":"Inizializzazione giocatori",
+  "player_initialization": {
+    "header": "Inizializzazione giocatori",
     "error_no_players_inserted": "Inserisci almeno un giocatore per iniziare la partita",
-    "revert_last_insertion": "Annulla l'ultimo inserimento",    
+    "revert_last_insertion": "Annulla l'ultimo inserimento",
     "total_score_old_matches": "Punteggio totale partite precedenti"
   },
   "leaderboard": {
-    "header":"Tabella punteggi",
+    "header": "Tabella punteggi",
     "empty_leaderboard": "La cronologia delle partite è vuota",
     "delete_leaderboard": "Elimina l'intera leaderboard"
   },
@@ -40,19 +41,19 @@
     "go_to_results": "Vai ai risultati"
   },
   "results": {
-    "header":"Risultati",
+    "header": "Risultati",
     "return_to_match": "Torna alla partita in corso",
     "start_new_game": "Inizia una nuova partita",
     "save_results": "Salva i risultati",
     "results_saved": "Hai salvato i risultati della partita!",
     "go_to_leaderboard": "Vai alla leaderboard"
   },
-  "configurations":{
+  "configurations": {
     "header": "Configurazioni",
     "update_configurations": "Aggiorna",
-    "error_in_configuration":"C'è stato un errore nella tua configurazione: Controlla che vengano rispettati i requisiti:",
+    "error_in_configuration": "C'è stato un errore nella tua configurazione: Controlla che vengano rispettati i requisiti:",
     "reset_configurations": "Ripristina",
-    "error_tracks":"tracks deve essere un elenco di lettere/parole/numeri all'interno di parentesi quadre, ciascuno dei quali deve essere circondato da apici",
+    "error_tracks": "tracks deve essere un elenco di lettere/parole/numeri all'interno di parentesi quadre, ciascuno dei quali deve essere circondato da apici",
     "error_shots_per_track": "error_shots_per_track deve essere un numero maggiore di zero",
     "error_tentatives": "il numero di elementi nella lista di points deve essere uguale a shots_per_tentative * tentatives (es. 9 = 3*3)",
     "error_color_cell": "Il colore deve essere scritto correttamente (vedi https://developer.mozilla.org/docs/Web/CSS/color)"
