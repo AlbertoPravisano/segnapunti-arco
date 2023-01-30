@@ -33,8 +33,9 @@ const TablePlayerHistory: React.FC<Props> = ({ playerHistory }) => {
       <Table.Footer>
         <Table.Row>
           <Table.HeaderCell colSpan="3" textAlign="right">
-            {t("common.total_score")}{" "}
-            {getScoreFromMatches(playerHistory.matches)}
+            {t("common.medium_score")}{" "}
+            {getScoreFromMatches(playerHistory.matches) /
+              playerHistory.matches.length}
           </Table.HeaderCell>
         </Table.Row>
       </Table.Footer>

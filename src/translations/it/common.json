@@ -22,7 +22,7 @@
     "add": "Aggiungi",
     "track": "Tracciato",
     "total": "Totale",
-    "total_score": "Punteggio totale",
+    "medium_score": "Punteggio medio",
     "configuration": "Configurazioni"
   },
   "player_initialization": {

@@ -22,7 +22,7 @@
     "add": "Add",
     "track": "Track",
     "total": "Total",
-    "total_score": "Total score",
+    "medium_score": "Medium score",
     "configuration": "Configurations"
   },
   "player_initialization": {
