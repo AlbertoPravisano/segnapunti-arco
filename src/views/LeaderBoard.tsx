@@ -33,6 +33,8 @@ const LeaderBoard = () => {
       ) : (
         <React.Fragment>
           <Tab
+            menu={{ fluid: true, vertical: true }}
+            menuPosition="left"
             panes={playersHistory.map((playerHistory) => {
               return {
                 menuItem: playerHistory.playerName,
@@ -42,6 +44,7 @@ const LeaderBoard = () => {
               };
             })}
           />
+          <br />
           <ConfirmButton
             negative
             onConfirm={() => {
