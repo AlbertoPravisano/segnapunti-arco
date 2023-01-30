@@ -118,7 +118,7 @@ const Row: React.FC<RowProps> = ({
       <Cell
         idShot={idShot}
         shotValue={shotValue}
-        tentative={0}
+        tentative={tentatives}
         cellScore={0}
         onCellSelected={readOnly ? undefined : onCellSelected}
       />
