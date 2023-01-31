@@ -135,14 +135,17 @@ const Match = () => {
         <Icon name="bolt" />
         <Header.Content>{t("match.header")}</Header.Content>
       </Header>
-      <NavButton
-        icon
-        labelPosition="right"
-        floated="right"
-        view={ViewsEnum.RESULTS_MATCH}
-      >
-        {t("match.go_to_results")} <Icon name="mail forward" />
-      </NavButton>
+      {/* TODO: La navigazione ripristina lo stato della partita iniziale. Manetenere lo stato da redux */}
+      {false && (
+        <NavButton
+          icon
+          labelPosition="right"
+          floated="right"
+          view={ViewsEnum.RESULTS_MATCH}
+        >
+          {t("match.go_to_results")} <Icon name="mail forward" />
+        </NavButton>
+      )}
       <br />
       <br />
       <br />
